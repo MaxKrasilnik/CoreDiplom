@@ -1,6 +1,6 @@
 using System;
 
-namespace CoreDiplom.Models
+namespace NLayerApp.WEB.Models
 {
     public class ErrorViewModel
     {

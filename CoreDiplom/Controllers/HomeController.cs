@@ -5,33 +5,71 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CoreDiplom.Models;
+using NLayerApp.BLL.Interfaces;
+using NLayerApp.BLL.DTO;
+using AutoMapper;
+using NLayerApp.WEB.Models;
+using NLayerApp.BLL.Infrastructure;
+using NLayerApp.BLL.Services;
 
-namespace CoreDiplom.Controllers
+namespace NLayerApp.WEB
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        IService service;
+        public HomeController(IService serv)
         {
-            _logger = logger;
+            service = serv;
         }
 
-        public IActionResult Index()
+        public ActionResult Index()
+        {
+            IEnumerable<PhoneDTO> phoneDtos = service.GetPhones();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
+            var phones = mapper.Map<IEnumerable<PhoneDTO>, List<PhoneViewModel>>(phoneDtos);
+            //return View(new PhoneViewModel { Id = 1, Name = "Phone1", Price = 2000, Manufacturer = "Samsung", Category = "Phone", Screen = 6, CPU = "CPU1", Camera = "Camera1", RAM = 4, Memory = 16, QtySimCard = 2, Charge = 3000, OperationSystem = "Android" });
+            return View(phones.First());
+        }
+
+        public ActionResult MakeApplicant(PhoneViewModel phone)
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public ActionResult MakeOrderCustomer(int? id)
         {
             return View();
-        }
+            //try
+            //{
+            //    PhoneDTO phone = service.GetPhone(id);
+            //    var order = new OrderViewModel { PhoneId = phone.Id };
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+            //    return View(order);
+            //}
+            //catch (ValidationException ex)
+            //{
+            //    return Content(ex.Message);
+            //}
+        }
+        [HttpPost]
+        public ActionResult MakeOrder(OrderCustomerViewModel order)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            try
+            {
+                var orderDto = new OrderCustomerDTO { Name=order.Name, Surname=order.Surname, Patronymic=order.Patronymic, Address=order.Address, OrderSellerId=order.OrderSellerId };
+                service.MakeOrderCustomer(orderDto);
+                return Content("<h2>Ваш заказ успешно оформлен</h2>");
+            }
+            catch (ValidationException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+            }
+            return View(order);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            service.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
