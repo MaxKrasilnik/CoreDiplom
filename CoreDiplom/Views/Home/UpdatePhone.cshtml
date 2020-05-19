@@ -1,0 +1,98 @@
+﻿@model NLayerApp.WEB.Models.PhoneViewModel
+@{
+    ViewData["Title"] = "EditPhone";
+}
+
+<h1>UpdatePhone</h1>
+
+@using (Html.BeginForm("UpdatePhone", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.HiddenFor(m => Model.Id)
+    <div>
+        <label class="col-md-5 control-label">Name</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Price</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.Price, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Manufacturer</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.Manufacturer, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Category</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.Category, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Screen</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.Screen, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">CPU</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.CPU, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Camera</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.Camera, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">CPU</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.CPU, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">RAM</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.RAM, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Memory</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.Memory, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">QtySimCard</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.QtySimCard, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Charge</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.Charge, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">OperationSystem</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.OperationSystem, new { @class = "form-control" })
+        </div>
+    </div>
+    @Html.HiddenFor(m => Model.OrderSellerId)
+    @Html.HiddenFor(m => Model.OrderSeller)
+
+
+    <div>
+        <div class="col-md-offset-6 col-md-6">
+            <input type="submit" class="btn btn-default" value="Сохранить" />
+        </div>
+    </div>
+}

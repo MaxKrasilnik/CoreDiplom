@@ -11,6 +11,8 @@ using AutoMapper;
 using NLayerApp.WEB.Models;
 using NLayerApp.BLL.Infrastructure;
 using NLayerApp.BLL.Services;
+using NLayerApp.DAL.Entities;
+using System.Net;
 
 namespace NLayerApp.WEB
 {
@@ -24,12 +26,114 @@ namespace NLayerApp.WEB
 
         public ActionResult Index()
         {
-            IEnumerable<PhoneDTO> phoneDtos = service.GetPhones();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
-            var phones = mapper.Map<IEnumerable<PhoneDTO>, List<PhoneViewModel>>(phoneDtos);
-            //return View(new PhoneViewModel { Id = 1, Name = "Phone1", Price = 2000, Manufacturer = "Samsung", Category = "Phone", Screen = 6, CPU = "CPU1", Camera = "Camera1", RAM = 4, Memory = 16, QtySimCard = 2, Charge = 3000, OperationSystem = "Android" });
-            return View(phones.First());
+            //IEnumerable<PhoneDTO> phoneDtos = service.GetPhones();
+            //var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
+            //var phones = mapper.Map<IEnumerable<PhoneDTO>, List<PhoneViewModel>>(phoneDtos);
+
+            //return View(phones.First());
+            return View();
         }
+
+        [HttpGet]
+        public ActionResult CreatePhone()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreatePhone(PhoneViewModel phoneVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneViewModel,
+                    PhoneDTO>()).CreateMapper();
+                PhoneDTO phoneDto = mapper.Map<PhoneViewModel, PhoneDTO>(phoneVM);
+                service.CreatePhone(phoneDto);
+
+                return Content("<h2>Ваш заказ успешно оформлен</h2>");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult UpdatePhone(int phoneIdDto)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
+            PhoneViewModel phoneVM = mapper.Map<PhoneDTO, PhoneViewModel>(service.GetPhone(phoneIdDto));
+
+            return View(phoneVM);
+        }
+
+        [HttpPost]
+        public ActionResult UpdatePhone(PhoneViewModel phoneVM)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneViewModel, PhoneDTO>()).CreateMapper();
+            PhoneDTO phoneDto = mapper.Map<PhoneViewModel, PhoneDTO>(phoneVM);
+            service.UpdatePhone(phoneDto);
+
+            return Content("<div style='text-align: center;'><h2>Изменения сохранены успешно</h2></div>");
+        }
+
+        public ActionResult GetPhone(int phoneIdDto)
+        {
+            PhoneDTO phoneDTO = service.GetPhone(phoneIdDto);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
+            PhoneViewModel phoneVM = mapper.Map<PhoneDTO, PhoneViewModel>(phoneDTO);
+            return View(phoneVM);
+        }
+
+        [HttpGet]
+        public ActionResult DeletePhone(int? phoneIdDto)
+        {
+            if (phoneIdDto == null)
+            {
+                throw new ValidationException("Не установлено id телефона", "");
+            }
+            PhoneDTO phoneDto = service.GetPhone(phoneIdDto);
+            if (phoneDto == null)
+            {
+                throw new ValidationException("Такого телефона не существует", "");
+            }
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
+            PhoneViewModel phoneVM = mapper.Map<PhoneDTO, PhoneViewModel>(phoneDto);
+            return View(phoneVM);
+        }
+
+        [HttpPost]
+        public ActionResult DeletePhone(PhoneViewModel phoneVM)
+        {
+            service.DeletePhone(phoneVM.Id);
+            return Content("<h2>Телефон удален</h2>");
+        }
+
+
+
+
+        [HttpGet]
+        public ActionResult CreateOrderSeller()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateOrderSeller(OrderSellerViewModel sellerVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderSellerViewModel,
+                    OrderSellerDTO>()).CreateMapper();
+                OrderSellerDTO sellerDto = mapper.Map<OrderSellerViewModel, OrderSellerDTO>(sellerVM);
+                service.CreateOrderSeller(sellerDto);
+
+                return Content("<h2>Ваш заказ успешно оформлен</h2>");
+            }
+            return View();
+        }
+
+
+
+
 
         public ActionResult MakeApplicant(PhoneViewModel phone)
         {
@@ -57,7 +161,7 @@ namespace NLayerApp.WEB
             try
             {
                 var orderDto = new OrderCustomerDTO { Name=order.Name, Surname=order.Surname, Patronymic=order.Patronymic, Address=order.Address, OrderSellerId=order.OrderSellerId };
-                service.MakeOrderCustomer(orderDto);
+                service.CreateOrderCustomer(orderDto);
                 return Content("<h2>Ваш заказ успешно оформлен</h2>");
             }
             catch (ValidationException ex)

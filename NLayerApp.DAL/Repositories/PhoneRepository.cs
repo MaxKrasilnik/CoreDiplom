@@ -37,6 +37,7 @@ namespace NLayerApp.DAL.Repositories
         public void Update(Phone phone)
         {
             db.Entry(phone).State = EntityState.Modified;
+            db.SaveChanges();
         }
 
         public IEnumerable<Phone> Find(Func<Phone, Boolean> predicate)

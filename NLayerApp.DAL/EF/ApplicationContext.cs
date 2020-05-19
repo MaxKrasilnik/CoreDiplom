@@ -18,7 +18,7 @@ namespace NLayerApp.DAL.EF
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();   // создаем базу данных при первом обращении
         }
 
@@ -27,6 +27,7 @@ namespace NLayerApp.DAL.EF
             OrderSeller orderSeller1 = new OrderSeller { Id = 1, Header = "Header1", Description = "Description1" };
             OrderSeller orderSeller2 = new OrderSeller { Id = 2, Header = "Header3", Description = "Description3" };
             OrderSeller orderSeller3 = new OrderSeller { Id = 3, Header = "Header2", Description = "Description2" };
+
             modelBuilder.Entity<OrderSeller>().HasData(new OrderSeller[] { orderSeller1, orderSeller2, orderSeller3 });
 
 
@@ -43,35 +44,9 @@ namespace NLayerApp.DAL.EF
             OrderCustomer orderCustomer5 = new OrderCustomer { Id = 5, Name = "Юрий", Surname = "Юрьев", Patronymic = "Юрьевич", Address = "ул.Юрьева 30", OrderSellerId = 1 };
             OrderCustomer orderCustomer6 = new OrderCustomer { Id = 6, Name = "Григорий", Surname = "Григорьев", Patronymic = "Григорьевич", Address = "ул.Григорьева 12", OrderSellerId = 3 };
 
-            
-            
-
             modelBuilder.Entity<Phone>().HasData(new Phone[] { phone1, phone2, phone3 });
             modelBuilder.Entity<OrderCustomer>().HasData(new OrderCustomer[] { orderCustomer1, orderCustomer2, orderCustomer3, orderCustomer4, orderCustomer5, orderCustomer6 });
             
-            
-
-            //phone1.OrderSellerId = orderSeller1.Id;
-            //phone1.OrderSeller = orderSeller1;
-            //phone2.OrderSellerId = orderSeller2.Id;
-            //phone2.OrderSeller = orderSeller2;
-            //phone3.OrderSellerId = orderSeller3.Id;
-            //phone3.OrderSeller = orderSeller3;
-
-            //orderCustomer1.OrderSellerId = orderSeller2.Id;
-            //orderCustomer1.OrderSeller = orderSeller2;
-            //orderCustomer2.OrderSellerId = orderSeller1.Id;
-            //orderCustomer2.OrderSeller = orderSeller1;
-            //orderCustomer3.OrderSellerId = orderSeller3.Id;
-            //orderCustomer3.OrderSeller = orderSeller3;
-            //orderCustomer4.OrderSellerId = orderSeller3.Id;
-            //orderCustomer4.OrderSeller = orderSeller3;
-            //orderCustomer5.OrderSellerId = orderSeller1.Id;
-            //orderCustomer5.OrderSeller = orderSeller1;
-            //orderCustomer6.OrderSellerId = orderSeller3.Id;
-            //orderCustomer6.OrderSeller = orderSeller3;
-
-
         }
     }
 }

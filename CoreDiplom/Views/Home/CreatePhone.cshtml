@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "CreatePhone";
+}
+
+<h1>CreatePhone</h1>
+
+@using (Html.BeginForm("CreatePhone", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div>
+        <label class="col-md-5 control-label">Name</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="Name" value="MyName" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Price</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="Price" value="1000" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Manufacturer</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="Manufacturer" value="MyManufacturer" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Category</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="Category" value="MyCategory" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Screen</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="Screen" value="10" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">CPU</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="CPU" value="MyCPU" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Camera</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="Camera" value="MyCamera" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">RAM</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="RAM" value="10" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Memory</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="Memory" value="10" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">QtySimCard</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="QtySimCard" value="10" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Charge</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="Charge" value="10" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">OperationSystem</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="OperationSystem" value="MyOperationSystem" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">OperationSystem</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="OrderSellerId" value="4" />
+        </div>
+    </div>
+
+    <div>
+        <div class="col-md-offset-6 col-md-6">
+            <input type="submit" class="btn btn-primary" value="Создать телефон" />
+        </div>
+    </div>
+}
