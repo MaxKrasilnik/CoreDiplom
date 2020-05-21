@@ -5,3 +5,26 @@
 
 <h1>CreateOrderSeller</h1>
 
+
+@using (Html.BeginForm("CreateOrderSeller", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div>
+        <label class="col-md-5 control-label">Header</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="Header" value="MyHeader" />
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Description</label>
+        <div class="col-md-6">
+            <input class="form-control" type="text" name="Description" value="MyDescription" />
+        </div>
+    </div>
+
+
+    <div>
+        <div class="col-md-offset-6 col-md-6">
+            <input type="submit" class="btn btn-primary" value="Создать объявление продавца" />
+        </div>
+    </div>
+}

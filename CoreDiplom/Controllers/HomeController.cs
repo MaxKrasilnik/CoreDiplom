@@ -34,6 +34,8 @@ namespace NLayerApp.WEB
             return View();
         }
 
+        //--------------------Phone---------------------
+
         [HttpGet]
         public ActionResult CreatePhone()
         {
@@ -110,6 +112,8 @@ namespace NLayerApp.WEB
 
 
 
+        //--------------------OrderSeller---------------------
+
         [HttpGet]
         public ActionResult CreateOrderSeller()
         {
@@ -131,45 +135,144 @@ namespace NLayerApp.WEB
             return View();
         }
 
-
-
-
-
-        public ActionResult MakeApplicant(PhoneViewModel phone)
+        [HttpGet]
+        public ActionResult UpdateOrderSeller(int sellerIdDto)
         {
-            return View();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderSellerDTO, OrderSellerViewModel>()).CreateMapper();
+            OrderSellerViewModel sellerVM = mapper.Map<OrderSellerDTO, OrderSellerViewModel>(service.GetOrderSeller(sellerIdDto));
+
+            return View(sellerVM);
         }
 
-        public ActionResult MakeOrderCustomer(int? id)
-        {
-            return View();
-            //try
-            //{
-            //    PhoneDTO phone = service.GetPhone(id);
-            //    var order = new OrderViewModel { PhoneId = phone.Id };
-
-            //    return View(order);
-            //}
-            //catch (ValidationException ex)
-            //{
-            //    return Content(ex.Message);
-            //}
-        }
         [HttpPost]
-        public ActionResult MakeOrder(OrderCustomerViewModel order)
+        public ActionResult UpdateOrderSeller(OrderSellerViewModel sellerVM)
         {
-            try
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderSellerViewModel, OrderSellerDTO>()).CreateMapper();
+            OrderSellerDTO sellerDto = mapper.Map<OrderSellerViewModel, OrderSellerDTO>(sellerVM);
+            service.UpdateOrderSeller(sellerDto);
+
+            return Content("<div style='text-align: center;'><h2>Изменения сохранены успешно</h2></div>");
+        }
+
+        public ActionResult GetOrderSeller(int sellerIdDto)
+        {
+            OrderSellerDTO sellerDTO = service.GetOrderSeller(sellerIdDto);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderSellerDTO, OrderSellerViewModel>()).CreateMapper();
+            OrderSellerViewModel sellerVM = mapper.Map<OrderSellerDTO, OrderSellerViewModel>(sellerDTO);
+            return View(sellerVM);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteOrderSeller(int? sellerIdDto)
+        {
+            if (sellerIdDto == null)
             {
-                var orderDto = new OrderCustomerDTO { Name=order.Name, Surname=order.Surname, Patronymic=order.Patronymic, Address=order.Address, OrderSellerId=order.OrderSellerId };
-                service.CreateOrderCustomer(orderDto);
+                throw new ValidationException("Не установлено id объявления продавца", "");
+            }
+            OrderSellerDTO sellerDto = service.GetOrderSeller(sellerIdDto);
+            if (sellerDto == null)
+            {
+                throw new ValidationException("Объявления продавца не существует", "");
+            }
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderSellerDTO, OrderSellerViewModel>()).CreateMapper();
+            OrderSellerViewModel sellerVM = mapper.Map<OrderSellerDTO, OrderSellerViewModel>(sellerDto);
+            return View(sellerVM);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteOrderSeller(OrderSellerViewModel sellerVM)
+        {
+            service.DeleteOrderSeller(sellerVM.Id);
+            return Content("<h2>Объявление продавца удалено</h2>");
+        }
+
+
+
+
+
+
+        //--------------------OrderCustomer---------------------
+        [HttpGet]
+        public ActionResult CreateOrderCustomer()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateOrderCustomer(OrderCustomerViewModel customerVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderCustomerViewModel,
+                    OrderCustomerDTO>()).CreateMapper();
+                OrderCustomerDTO customerDto = mapper.Map<OrderCustomerViewModel, OrderCustomerDTO>(customerVM);
+                service.CreateOrderCustomer(customerDto);
+
                 return Content("<h2>Ваш заказ успешно оформлен</h2>");
             }
-            catch (ValidationException ex)
-            {
-                ModelState.AddModelError(ex.Property, ex.Message);
-            }
-            return View(order);
+            return View();
         }
+
+        [HttpGet]
+        public ActionResult UpdateOrderCustomer(int customerIdDto)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderCustomerDTO, OrderCustomerViewModel>()).CreateMapper();
+            OrderCustomerViewModel customerVM = mapper.Map<OrderCustomerDTO, OrderCustomerViewModel>(service.GetOrderCustomer(customerIdDto));
+
+            return View(customerVM);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateOrderCustomer(OrderCustomerViewModel customerVM)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderCustomerViewModel, OrderCustomerDTO>()).CreateMapper();
+            OrderCustomerDTO customerDto = mapper.Map<OrderCustomerViewModel, OrderCustomerDTO>(customerVM);
+            service.UpdateOrderCustomer(customerDto);
+
+            return Content("<div style='text-align: center;'><h2>Изменения сохранены успешно</h2></div>");
+        }
+
+        public ActionResult GetOrderCustomer(int customerIdDto)
+        {
+            OrderCustomerDTO customerDTO = service.GetOrderCustomer(customerIdDto);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderCustomerDTO, OrderCustomerViewModel>()).CreateMapper();
+            OrderCustomerViewModel customerVM = mapper.Map<OrderCustomerDTO, OrderCustomerViewModel>(customerDTO);
+            return View(customerVM);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteOrderCustomer(int? customerIdDto)
+        {
+            if (customerIdDto == null)
+            {
+                throw new ValidationException("Не установлено id объявления покупателя", "");
+            }
+            OrderCustomerDTO customerDto = service.GetOrderCustomer(customerIdDto);
+            if (customerDto == null)
+            {
+                throw new ValidationException("Объявления покупателя не существует", "");
+            }
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<OrderCustomerDTO, OrderCustomerViewModel>()).CreateMapper();
+            OrderCustomerViewModel customerVM = mapper.Map<OrderCustomerDTO, OrderCustomerViewModel>(customerDto);
+            return View(customerVM);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteOrderCustomer(OrderCustomerViewModel customerVM)
+        {
+            service.DeleteOrderCustomer(customerVM.Id);
+            return Content("<h2>Объявление покупателя удалено</h2>");
+        }
+
+
+
+
+
+
+
+
         protected override void Dispose(bool disposing)
         {
             service.Dispose();

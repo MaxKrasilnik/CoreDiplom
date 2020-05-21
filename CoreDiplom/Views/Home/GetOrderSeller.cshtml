@@ -1,0 +1,29 @@
+﻿@model NLayerApp.WEB.Models.OrderSellerViewModel
+@{
+    ViewData["Title"] = "GetOrderSeller";
+}
+
+<h1>GetOrderSeller</h1>
+
+@using (Html.BeginForm("UpdateOrderSeller", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.HiddenFor(m => Model.Id)
+    <div>
+        <label class="col-md-5 control-label">Header</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.Header, new { @class = "form-control" })
+        </div>
+    </div>
+    <div>
+        <label class="col-md-5 control-label">Description</label>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => Model.Description, new { @class = "form-control" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(m => Model.Product)
+    @Html.HiddenFor(m => Model.OrderCustomers)
+
+}
+
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Home")'">Главная</button>
