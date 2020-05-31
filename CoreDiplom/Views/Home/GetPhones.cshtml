@@ -1,0 +1,66 @@
+﻿@model List<NLayerApp.WEB.Models.PhoneViewModel>
+@{
+    ViewData["Title"] = "GetPhones";
+    Layout = "_Layout_Products";
+}
+
+<h1>GetPhones</h1>
+
+
+@section Filters{
+    <div class="checkbox-container">
+
+
+        @{
+            <h3>Фирма</h3>
+            <input type="checkbox" id="1">
+            <label for="ch_1">2</label>
+        }
+    </div>
+}
+
+
+
+
+<!--Карточки товаров-->
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-md-4">
+            <div class="card">
+                <div style="height: 200px;">
+                    <img src="~/images/phone1.jpg" class="imgCardCategories" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5>Мой заголовок</h5>
+                    <table>
+                        <tr class="card-sale">
+                            <td>Цена сначала</td>
+                            <td>Цена сейчас</td>
+                            <td>Мин. цена</td>
+                        </tr>
+                        <tr class="card-sale">
+                            <td class="old-sale">2500</td>
+                            <td class="now-sale">2000</td>
+                            <td>1500</td>
+                        </tr>
+                    </table>
+                    <div style="display: flex; justify-content: center; flex-direction: column;">
+                        <table style="margin-bottom: 10px;">
+                            <tr class="card-sale">
+                                <td>Осталось шт.</td>
+                                <td>Таймер</td>
+                            </tr>
+                            <tr class="card-sale">
+                                <td>5</td>
+                                <td class="timerGood"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <a href='@Url.Action("GetPhones", "Home")' class="btns">Купить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

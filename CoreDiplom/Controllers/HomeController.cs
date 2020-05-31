@@ -84,6 +84,14 @@ namespace NLayerApp.WEB
             return View(phoneVM);
         }
 
+        public ActionResult GetPhones()
+        {
+            IEnumerable<PhoneDTO> phoneDTOs = service.GetPhones();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<IEnumerable<PhoneDTO>, List<PhoneViewModel>>()).CreateMapper();
+            List<PhoneViewModel> phoneVMs = mapper.Map<IEnumerable<PhoneDTO>, List<PhoneViewModel>>(phoneDTOs);
+            return View(phoneVMs);
+        }
+
         [HttpGet]
         public ActionResult DeletePhone(int? phoneIdDto)
         {
@@ -130,7 +138,7 @@ namespace NLayerApp.WEB
                 OrderSellerDTO sellerDto = mapper.Map<OrderSellerViewModel, OrderSellerDTO>(sellerVM);
                 service.CreateOrderSeller(sellerDto);
 
-                return Content("<h2>Ваш заказ успешно оформлен</h2>");
+                return View("Index");
             }
             return View();
         }
