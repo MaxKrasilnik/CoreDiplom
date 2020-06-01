@@ -21,7 +21,7 @@ namespace NLayerApp.DAL.Repositories
 
         public IEnumerable<Phone> GetAll()
         {
-            return db.Phones;
+            return db.Phones.Include(p=>p.Images).Include(p=>p.OrderSeller);
         }
 
         public Phone Get(int id)

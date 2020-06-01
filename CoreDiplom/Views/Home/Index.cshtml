@@ -141,21 +141,26 @@
 
     <div>
         <button style="background-color: #ea5455; border-color: #ea5455;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("CreatePhone", "Home")'">Создать телефон</button>
-        <button style="background-color: #f07b3f; border-color: #f07b3f;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("UpdatePhone", "Home", new { phoneIdDto=5 })'">Редактировать телефон</button>
-        <button style="background-color: #ffd460; border-color: #ffd460;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetPhone", "Home", new { phoneIdDto=5 })'">Просмотр телефона</button>
+        <button style="background-color: #f07b3f; border-color: #f07b3f;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("UpdatePhone", "Home", new { phoneIdDto=1 })'">Редактировать телефон</button>
+        <button style="background-color: #ffd460; border-color: #ffd460;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetPhone", "Home", new { phoneIdDto=1 })'">Просмотр телефона</button>
         <button style="background-color: #2d4059; border-color: #2d4059;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("DeletePhone", "Home", new { phoneIdDto=5 })'">Удалить телефон</button>
     </div>
 
     <div style="margin-top: 30px;">
         <button style="background-color: #2d4059; border-color: #2d4059; color: #ea5455;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("CreateOrderSeller", "Home")'">Создать объявление продавца</button>
-        <button style="background-color: #2d4059; border-color: #2d4059; color: #f07b3f;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("UpdateOrderSeller", "Home", new { sellerIdDto=5 })'">Редактировать объявление продавца</button>
-        <button style="background-color: #2d4059; border-color: #2d4059; color: #ffd460;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetOrderSeller", "Home", new { sellerIdDto=5 })'">Просмотр объявление продавца</button>
+        <button style="background-color: #2d4059; border-color: #2d4059; color: #f07b3f;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("UpdateOrderSeller", "Home", new { sellerIdDto=1 })'">Редактировать объявление продавца</button>
+        <button style="background-color: #2d4059; border-color: #2d4059; color: #ffd460;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetOrderSeller", "Home", new { sellerIdDto=1 })'">Просмотр объявление продавца</button>
         <button style="background-color: #2d4059; border-color: #2d4059; color: #ea5455;" type="button" class="btn btn-primary" onclick="location.href='@Url.Action("DeleteOrderSeller", "Home", new { sellerIdDto=5 })'">Удалить объявление продавца</button>
     </div>
 
-    <div style="        margin-top: 30px;">
+    <div style="margin-top: 30px;">
         <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("CreateOrderCustomer", "Home")'">Создать объявление покупателя</button>
         <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("UpdateOrderCustomer", "Home", new { customerIdDto=8 })'">Редактировать объявление покупателя</button>
         <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetOrderCustomer", "Home", new { customerIdDto=8 })'">Просмотр объявление покупателя</button>
         <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("DeleteOrderCustomer", "Home", new { customerIdDto=8 })'">Удалить объявление покупателя</button>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("CreateImage", "Home")'">Добавить изображение</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GetImages", "Home")'">Посмотреть изображение</button>
     </div>

@@ -16,5 +16,7 @@ namespace NLayerApp.DAL.Entities
 
         public int OrderSellerId { get; set; }
         public OrderSeller OrderSeller { get; set; }
+
+        public ICollection<Image> Images { get; set; }
     }
 }

@@ -16,7 +16,7 @@
     <header>
         <div class="gridHeader">
             <img id="logoHeader" src="~/images/logo2.png" alt="Alternate Text" onclick="location.href='@Url.Action("Index", "Home")'" />
-            <span id="nameHeader">MARKET</span>
+            <span id="nameHeader"><a href="@Url.Action("Index", "Home")">MARKET</a></span>
 
             <div id="searchHeader" class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,11 +40,6 @@
     </main>
 
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - CoreDiplom - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

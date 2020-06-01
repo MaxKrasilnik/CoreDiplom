@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EF\ApplicationContext.cs" />
+    <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\OrderCustomer.cs" />
     <Compile Include="Entities\OrderSeller.cs" />
     <Compile Include="Entities\Phone.cs" />
@@ -156,9 +157,18 @@
     <Compile Include="Migrations\20200519140906_thrirteen.designer.cs">
       <DependentUpon>20200519140906_thrirteen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200531190626_fifteen.cs" />
+    <Compile Include="Migrations\20200531190626_fifteen.designer.cs">
+      <DependentUpon>20200531190626_fifteen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200601133844_sixteen.cs" />
+    <Compile Include="Migrations\20200601133844_sixteen.designer.cs">
+      <DependentUpon>20200601133844_sixteen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
+    <Compile Include="Repositories\ImageRepository.cs" />
     <Compile Include="Repositories\OrderCustomerRepository.cs" />
     <Compile Include="Repositories\OrderSellerRepository.cs" />
     <Compile Include="Repositories\PhoneRepository.cs" />

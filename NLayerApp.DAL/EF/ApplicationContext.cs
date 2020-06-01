@@ -11,6 +11,7 @@ namespace NLayerApp.DAL.EF
     public class ApplicationContext: DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Image> Images { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<OrderSeller> OrderSellers { get; set; }
         public DbSet<OrderCustomer> OrderCustomers { get; set; }
@@ -30,6 +31,11 @@ namespace NLayerApp.DAL.EF
 
             modelBuilder.Entity<OrderSeller>().HasData(new OrderSeller[] { orderSeller1, orderSeller2, orderSeller3 });
 
+            Image image1 = new Image() { Id = 1, Name = "phone1.jpg", Path = "/images/phone1.jpg", ProductId = 1 };
+            Image image2 = new Image() { Id = 2, Name = "phone2.jpg", Path = "/images/phone2.jpg", ProductId = 2 };
+            Image image3 = new Image() { Id = 3, Name = "phone3.jpg", Path = "/images/phone3.jpg", ProductId = 3 };
+
+
 
             Phone phone1 = new Phone { Id = 1, Name = "Phone1", Price = 2000, Manufacturer = "Samsung", Category = "Phone", Screen = 6, CPU = "CPU1", Camera = "Camera1", RAM = 4, Memory = 16, QtySimCard = 2, Charge = 3000, OperationSystem = "Android", OrderSellerId = 1 };
             Phone phone2 = new Phone { Id = 2, Name = "Phone2", Price = 4000, Manufacturer = "Apple", Category = "Phone", Screen = 8, CPU = "CPU2", Camera = "Camera2", RAM = 16, Memory = 64, QtySimCard = 2, Charge = 2500, OperationSystem = "IOS", OrderSellerId = 2 };
@@ -44,6 +50,7 @@ namespace NLayerApp.DAL.EF
             OrderCustomer orderCustomer5 = new OrderCustomer { Id = 5, Name = "Юрий", Surname = "Юрьев", Patronymic = "Юрьевич", Address = "ул.Юрьева 30", OrderSellerId = 1 };
             OrderCustomer orderCustomer6 = new OrderCustomer { Id = 6, Name = "Григорий", Surname = "Григорьев", Patronymic = "Григорьевич", Address = "ул.Григорьева 12", OrderSellerId = 3 };
 
+            modelBuilder.Entity<Image>().HasData(new Image[] { image1, image2, image3 });
             modelBuilder.Entity<Phone>().HasData(new Phone[] { phone1, phone2, phone3 });
             modelBuilder.Entity<OrderCustomer>().HasData(new OrderCustomer[] { orderCustomer1, orderCustomer2, orderCustomer3, orderCustomer4, orderCustomer5, orderCustomer6 });
             

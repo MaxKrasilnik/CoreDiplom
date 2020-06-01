@@ -24,9 +24,15 @@ namespace NLayerApp.BLL.Interfaces
 
         void CreatePhone(PhoneDTO phoneDto);
         PhoneDTO GetPhone(int? id);
-        IEnumerable<PhoneDTO> GetPhones();
+        List<PhoneDTO> GetPhones();
         void UpdatePhone(PhoneDTO phoneDto);
         void DeletePhone(int id);
+
+        void CreateImage(ImageDTO imageDto);
+        ImageDTO GetImage(int? id);
+        IEnumerable<ImageDTO> GetImages();
+        void UpdateImage(ImageDTO imageDto);
+        void DeleteImage(int id);
 
         void Dispose();
     }

@@ -13,6 +13,7 @@ namespace NLayerApp.DAL.Interfaces
         IRepository<Phone> Phones { get; }
         IRepository<OrderCustomer> OrderCustomers { get; }
         IRepository<OrderSeller> OrderSellers { get; }
+        IRepository<Image> Images { get; }
         void Save();
     }
 }

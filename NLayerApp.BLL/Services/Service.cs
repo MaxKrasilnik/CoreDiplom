@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace NLayerApp.BLL.Services
 {
     public class Service : IService
@@ -20,11 +21,6 @@ namespace NLayerApp.BLL.Services
         {
             Database = uow;
         }
-
-
-        
-
-
 
         //--------------------Phone---------------------
 
@@ -68,7 +64,7 @@ namespace NLayerApp.BLL.Services
             return mapper.Map<Phone, PhoneDTO>(phone);
         }
 
-        public IEnumerable<PhoneDTO> GetPhones()
+        public List<PhoneDTO> GetPhones()
         {
             // применяем автомаппер для проекции одной коллекции на другую
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Phone, PhoneDTO>()).CreateMapper();
@@ -178,6 +174,55 @@ namespace NLayerApp.BLL.Services
         public void DeleteOrderCustomer(int id)
         {
             Database.OrderCustomers.Delete(id);
+            Database.Save();
+        }
+
+
+
+        //--------------------Image---------------------
+
+        public void CreateImage(ImageDTO imageDto)
+        {
+            if (imageDto == null)
+                throw new ValidationException("При добавлении нового изображения произошла ошибка. Экземпляр объекта ImageDTO равен null.", "");
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ImageDTO, Image>()).CreateMapper();
+            Image image = mapper.Map<ImageDTO, Image>(imageDto);
+
+            Database.Images.Create(image);
+            Database.Save();
+        }
+
+        public void UpdateImage(ImageDTO imageDto)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ImageDTO, Image>()).CreateMapper();
+            Image image = mapper.Map<ImageDTO, Image>(imageDto);
+
+            Database.Images.Update(image);
+            Database.Save();
+        }
+
+        public ImageDTO GetImage(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Не установлено id изображения", "");
+            var image = Database.Images.Get(id.Value);
+            if (image == null)
+                throw new ValidationException("Изображение не найдено", "");
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Image, ImageDTO>()).CreateMapper();
+            return mapper.Map<Image, ImageDTO>(image);
+        }
+
+        public IEnumerable<ImageDTO> GetImages()
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Image, ImageDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<Image>, List<ImageDTO>>(Database.Images.GetAll());
+        }
+
+        public void DeleteImage(int id)
+        {
+            Database.Images.Delete(id);
             Database.Save();
         }
 

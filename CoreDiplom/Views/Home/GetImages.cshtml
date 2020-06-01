@@ -1,0 +1,10 @@
+﻿@model List<NLayerApp.WEB.Models.ImageViewModel>
+    @{
+        ViewData["Title"] = "GetImages";
+    }
+
+    <h3>Все файлы</h3>
+    @foreach(var image in Model)
+    {
+        <p><img src="@Url.Content(image.Path)"></p>
+    }

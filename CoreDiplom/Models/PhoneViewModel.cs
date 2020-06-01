@@ -17,6 +17,8 @@ namespace NLayerApp.WEB.Models
         public int OrderSellerId { get; set; }
         public OrderSeller OrderSeller { get; set; }
 
+        public List<Image> Images { get; set; }
+
         public double Screen { get; set; }//размер экрана
         public string CPU { get; set; }//процессор
         public string Camera { get; set; }//камера

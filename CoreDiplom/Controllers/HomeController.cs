@@ -13,15 +13,21 @@ using NLayerApp.BLL.Infrastructure;
 using NLayerApp.BLL.Services;
 using NLayerApp.DAL.Entities;
 using System.Net;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace NLayerApp.WEB
 {
     public class HomeController : Controller
     {
         IService service;
-        public HomeController(IService serv)
+        IWebHostEnvironment _appEnvironment;
+
+        public HomeController(IService serv, IWebHostEnvironment appEnvironment)
         {
             service = serv;
+            _appEnvironment = appEnvironment;
         }
 
         public ActionResult Index()
@@ -33,6 +39,66 @@ namespace NLayerApp.WEB
             //return View(phones.First());
             return View();
         }
+
+
+        [HttpGet]
+        public ActionResult CreateImage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateImage(IFormFile fileImage)
+        {
+            if (fileImage != null)
+            {
+                // путь к папке Files
+                string path = "/images/" + fileImage.FileName;
+                // сохраняем файл в папку Files в каталоге wwwroot
+                using(var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                {
+                    fileImage.CopyTo(fileStream);
+                }
+
+
+                PhoneDTO phoneDto = service.GetPhone(1);
+                //var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO,
+                //    Phone>()).CreateMapper();
+                //Phone phone = mapper.Map<PhoneDTO, Phone>(phoneDto);
+
+                ImageViewModel imageVM = new ImageViewModel { Name = fileImage.FileName, Path = path, ProductId = phoneDto.Id };
+                var mapper1 = new MapperConfiguration(cfg => cfg.CreateMap<ImageViewModel,
+                    ImageDTO>()).CreateMapper();
+                ImageDTO imageDto = mapper1.Map<ImageViewModel, ImageDTO>(imageVM);
+                service.CreateImage(imageDto);
+            }
+
+            return View();
+        }
+
+        public ActionResult GetImages()
+        {
+            IEnumerable<ImageDTO> imageDtos = service.GetImages();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ImageDTO,
+                    ImageViewModel>()).CreateMapper();
+            List<ImageViewModel> imageVM = mapper.Map<IEnumerable<ImageDTO>, List<ImageViewModel>>(imageDtos);
+
+            return View(imageVM);
+        }
+
+        /*[HttpPost]
+        public ActionResult Test(ImageViewModel imageVM)
+        {
+            if (ModelState.IsValid)
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ImageViewModel, ImageDTO>()).CreateMapper();
+                ImageDTO imageDto = mapper.Map<ImageViewModel, ImageDTO>(imageVM);
+                service.CreateImage(imageDto);
+
+                return Content("<h2>Ваш заказ успешно оформлен</h2>");
+            }
+            return View();
+        }*/
 
         //--------------------Phone---------------------
 
@@ -81,14 +147,26 @@ namespace NLayerApp.WEB
             PhoneDTO phoneDTO = service.GetPhone(phoneIdDto);
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
             PhoneViewModel phoneVM = mapper.Map<PhoneDTO, PhoneViewModel>(phoneDTO);
+
+            var mapper1 = new MapperConfiguration(cfg => cfg.CreateMap<ImageDTO, Image>()).CreateMapper();
+            IEnumerable<Image> images = mapper1.Map<IEnumerable<ImageDTO>, IEnumerable<Image>>(service.GetImages());
+
+            phoneVM.Images.AddRange(images.Where(i => i.ProductId == phoneVM.Id));
+
+            var mapper2 = new MapperConfiguration(cfg => cfg.CreateMap<OrderSellerDTO, OrderSeller>()).CreateMapper();
+            OrderSeller seller = mapper2.Map<OrderSellerDTO, OrderSeller>(service.GetOrderSeller(phoneVM.OrderSellerId));
+
+            phoneVM.OrderSeller = seller;
+
             return View(phoneVM);
         }
 
         public ActionResult GetPhones()
         {
-            IEnumerable<PhoneDTO> phoneDTOs = service.GetPhones();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<IEnumerable<PhoneDTO>, List<PhoneViewModel>>()).CreateMapper();
-            List<PhoneViewModel> phoneVMs = mapper.Map<IEnumerable<PhoneDTO>, List<PhoneViewModel>>(phoneDTOs);
+            List<PhoneDTO> phoneDTOs = service.GetPhones();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
+            List<PhoneViewModel> phoneVMs = mapper.Map<List<PhoneDTO>, List<PhoneViewModel>>(phoneDTOs);
+
             return View(phoneVMs);
         }
 
@@ -116,7 +194,6 @@ namespace NLayerApp.WEB
             service.DeletePhone(phoneVM.Id);
             return Content("<h2>Телефон удален</h2>");
         }
-
 
 
 

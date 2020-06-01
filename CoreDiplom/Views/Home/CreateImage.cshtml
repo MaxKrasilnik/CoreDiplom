@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "CreateImage";
+}
+
+<h1>CreateImage</h1>
+
+<h3>Выберите файл для загрузки</h3>
+<form asp-action="CreateImage" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <input type="file" name="fileImage" /><br>
+    <input type="submit" value="Загрузить" />
+</form>
