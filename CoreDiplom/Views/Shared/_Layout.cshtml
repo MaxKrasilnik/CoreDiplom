@@ -19,7 +19,7 @@
             <span id="nameHeader"><a href="@Url.Action("Index", "Home")">MARKET</a></span>
 
             <div id="searchHeader" class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button style="border: 0px;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Категории
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <img id="loginHeader" src="~/images/registration.png" alt="Alternate Text" onclick="location.href='@Url.Action("Index", "Home")'" />
+            <img data-toggle="modal" data-target="#exampleModal" id="loginHeader" src="~/images/registration.png" alt="Alternate Text" />
             <img id="registerHeader" src="~/images/account.png" alt="Alternate Text" onclick="location.href='@Url.Action("Index", "Home")'" />
             <img id="basketHeader" src="/images/basket2.png" alt="Alternate Text" onclick="location.href='@Url.Action("Index", "Home")'" />
         </div>
@@ -39,6 +39,35 @@
         @RenderBody()
     </main>
 
+
+    @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Запустить модальное окно
+    </button>*@
+
+@*<script>
+    "use strict";
+    $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+});
+</script>*@
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form style="width: 80%; margin: auto; padding: 10px 0px;">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Введите свой еmail</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите свой email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Введите свой пароль</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите свой пароль">
+                    </div>
+                    <button type="submit" class="btns" style="border: none; font-size: 14pt; padding: 5px 15px;">Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
