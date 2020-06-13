@@ -34,6 +34,14 @@ namespace NLayerApp.BLL.Interfaces
         void UpdateImage(ImageDTO imageDto);
         void DeleteImage(int id);
 
+        void CreateUser(UserDTO userDto);
+        UserDTO GetUser(int? id);
+        IEnumerable<UserDTO> GetUsers();
+        void UpdateUser(UserDTO userDto);
+        void DeleteUser(int id);
+
+        string GetProduct(int? id);
+
         void Dispose();
     }
 }

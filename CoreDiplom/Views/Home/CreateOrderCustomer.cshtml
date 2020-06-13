@@ -1,47 +1,46 @@
 ﻿
 @{
     ViewData["Title"] = "CreateOrderCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>CreateOrderCustomer</h1>
-
-@using (Html.BeginForm("CreateOrderCustomer", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    <div>
-        <label class="col-md-5 control-label">Name</label>
-        <div class="col-md-6">
-            <input class="form-control" type="text" name="Name" value="MyName" />
-        </div>
-    </div>
-    <div>
-        <label class="col-md-5 control-label">Surname</label>
-        <div class="col-md-6">
-            <input class="form-control" type="text" name="Surname" value="MySurname" />
-        </div>
-    </div>
-    <div>
-        <label class="col-md-5 control-label">Patronymic</label>
-        <div class="col-md-6">
-            <input class="form-control" type="text" name="Patronymic" value="MyPatronymic" />
-        </div>
-    </div>
-    <div>
-        <label class="col-md-5 control-label">Address</label>
-        <div class="col-md-6">
-            <input class="form-control" type="text" name="Address" value="MyAddress" />
-        </div>
-    </div>
-    <div>
-        <label class="col-md-5 control-label">OrderSellerId</label>
-        <div class="col-md-6">
-            <input class="form-control" type="text" name="OrderSellerId" value="6" />
-        </div>
-    </div>
+    <div style="padding-top: 50px; padding-bottom: 30px;">
+        <h3 style="text-align: center; margin-bottom: 20px;">Страница заказа</h3>
+        <div style="display: flex; width: 100%; height: 100%; justify-content: center; align-items: center; flex-direction:column;">
+            <form asp-controller="Home" asp-action="CreateOrderCustomer" method="post"
+                  style="width: 400px; text-align: center;">
+                <div class="form-group">
+                    <label for="Surname">Введите свою фамилию</label>
+                    <input type="text" class="form-control" placeholder="Иванов" name="Surname" style="text-align: center;">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Введите свое имя</label>
+                    <input type="text" class="form-control" placeholder="Иван" name="Name" style="text-align: center;">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Введите свое отчество</label>
+                    <input type="text" class="form-control" placeholder="Иванович" name="Patronymic" style="text-align: center;">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Введите свой адрес</label>
+                    <input type="text" class="form-control" placeholder="Киев, отделение №14" name="Address" style="text-align: center;">
+                </div>
+                <input class="form-control" type="hidden" name="ProdId" value="@ViewData["prodId"]" />
+                <input class="form-control" type="hidden" name="UserId" value="@ViewData["UserId"]" />
 
 
-    <div>
-        <div class="col-md-offset-6 col-md-6">
-            <input type="submit" class="btn btn-primary" value="Создать объявление покупателя" />
+                <div>
+                    <div class="col-md-offset-6 col-md-6" style="margin: auto;">
+                        <input style="margin: auto; font-size: 14pt; padding: 5px 15px; border: none;" type="submit" class="btns" value="Создать заказ" />
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-}
+
+
+
+
+
+
+

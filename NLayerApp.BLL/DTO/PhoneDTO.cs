@@ -11,9 +11,13 @@ namespace NLayerApp.BLL.DTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public float Price { get; set; }
         public string Manufacturer { get; set; }
         public string Category { get; set; }
+        public int PriceStart { get; set; }
+        public int PriceNow { get; set; }
+        public int PriceEnd { get; set; }
+        public int QtyStart { get; set; }
+        public int QtyEnd { get; set; }
 
         public int OrderSellerId { get; set; }
         public OrderSeller OrderSeller { get; set; }

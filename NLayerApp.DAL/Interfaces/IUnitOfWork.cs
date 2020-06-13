@@ -14,6 +14,7 @@ namespace NLayerApp.DAL.Interfaces
         IRepository<OrderCustomer> OrderCustomers { get; }
         IRepository<OrderSeller> OrderSellers { get; }
         IRepository<Image> Images { get; }
+        IRepository<User> Users { get; }
         void Save();
     }
 }

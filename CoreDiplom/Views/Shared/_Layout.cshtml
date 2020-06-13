@@ -53,19 +53,48 @@
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form style="width: 80%; margin: auto; padding: 10px 0px;">
+            <div class="modal-content" style="width: 80%; margin: auto; padding: 10px 0px;">
+
+                <form asp-controller="Home" asp-action="UserCabinet" style="width: 80%; margin: auto; padding: 10px 0px;" method="post">
+                    @*<div class="form-group">
+                        <input type="hidden" class="form-control" name="id">
+                    </div>*@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Введите свой еmail</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите свой email">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите свой email" name="email">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Введите свой пароль</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите свой пароль">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите свой пароль" name="password">
                     </div>
-                    <button type="submit" class="btns" style="border: none; font-size: 14pt; padding: 5px 15px;">Войти</button>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" name="Role" value="Customer">
+                    </div>
+
+                    <div>
+                        <div class="col-md-offset-6 col-md-6">
+                            <input type="submit" class="btn btn-default" value="Войти" />
+                        </div>
+                    </div>
                 </form>
+                    @*<form style="width: 80%; margin: auto; padding: 10px 0px;" method="post">
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="Id">
             </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Введите свой еmail</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введите свой email" name="Email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Введите свой пароль</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите свой пароль" name="Password">
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="Role" value="Customer">
+            </div>
+            <button type="submit" class="btns" style="border: none; font-size: 14pt; padding: 5px 15px;">Войти</button>
+        </form>*@
+</div>
         </div>
     </div>
 

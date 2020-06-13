@@ -14,6 +14,8 @@ namespace NLayerApp.BLL.DTO
         public string Description { get; set; }
 
         public Product Product { get; set; }
-        public ICollection<OrderCustomer> OrderCustomers { get; set; }
+
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

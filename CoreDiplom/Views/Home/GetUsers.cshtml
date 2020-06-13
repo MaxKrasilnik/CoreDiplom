@@ -1,0 +1,26 @@
+﻿@model List<NLayerApp.WEB.Models.UserViewModel>
+@{
+    ViewData["Title"] = "GetUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetUsers</h1>
+
+<table style="padding-top: 50px;">
+    <tr>
+        <td>Id</td>
+        <td>Email</td>
+        <td>Password</td>
+        <td>Role</td>
+    </tr>
+
+    @foreach (UserViewModel user in Model)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.Email</td>
+            <td>@user.Password</td>
+            <td>@user.Role</td>
+        </tr>
+    }
+</table>

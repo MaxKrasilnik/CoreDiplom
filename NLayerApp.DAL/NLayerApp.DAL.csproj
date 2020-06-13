@@ -147,6 +147,7 @@
     <Compile Include="Entities\OrderSeller.cs" />
     <Compile Include="Entities\Phone.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Migrations\20200518175427_nineth.cs" />
@@ -165,6 +166,78 @@
     <Compile Include="Migrations\20200601133844_sixteen.designer.cs">
       <DependentUpon>20200601133844_sixteen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200603144438_twentyOne.cs" />
+    <Compile Include="Migrations\20200603144438_twentyOne.designer.cs">
+      <DependentUpon>20200603144438_twentyOne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200603145425_twentyTwo.cs" />
+    <Compile Include="Migrations\20200603145425_twentyTwo.designer.cs">
+      <DependentUpon>20200603145425_twentyTwo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200603145723_twentyThree.cs" />
+    <Compile Include="Migrations\20200603145723_twentyThree.designer.cs">
+      <DependentUpon>20200603145723_twentyThree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200608181724_twenty-five.cs" />
+    <Compile Include="Migrations\20200608181724_twenty-five.designer.cs">
+      <DependentUpon>20200608181724_twenty-five.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200610064727_twenty-six.cs" />
+    <Compile Include="Migrations\20200610064727_twenty-six.designer.cs">
+      <DependentUpon>20200610064727_twenty-six.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200610065130_twenty-seven.cs" />
+    <Compile Include="Migrations\20200610065130_twenty-seven.designer.cs">
+      <DependentUpon>20200610065130_twenty-seven.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200610065532_twenty-eight.cs" />
+    <Compile Include="Migrations\20200610065532_twenty-eight.designer.cs">
+      <DependentUpon>20200610065532_twenty-eight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200610065814_twenty-nine.cs" />
+    <Compile Include="Migrations\20200610065814_twenty-nine.designer.cs">
+      <DependentUpon>20200610065814_twenty-nine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200610070144_thirty.cs" />
+    <Compile Include="Migrations\20200610070144_thirty.designer.cs">
+      <DependentUpon>20200610070144_thirty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200610103624_thirty-one.cs" />
+    <Compile Include="Migrations\20200610103624_thirty-one.designer.cs">
+      <DependentUpon>20200610103624_thirty-one.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200610104924_thirty-two.cs" />
+    <Compile Include="Migrations\20200610104924_thirty-two.designer.cs">
+      <DependentUpon>20200610104924_thirty-two.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200610125933_thirty-four.cs" />
+    <Compile Include="Migrations\20200610125933_thirty-four.designer.cs">
+      <DependentUpon>20200610125933_thirty-four.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200610130013_thirty-five.cs" />
+    <Compile Include="Migrations\20200610130013_thirty-five.designer.cs">
+      <DependentUpon>20200610130013_thirty-five.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200611121811_trirty-six.cs" />
+    <Compile Include="Migrations\20200611121811_trirty-six.designer.cs">
+      <DependentUpon>20200611121811_trirty-six.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200611192345_thirty-seven.cs" />
+    <Compile Include="Migrations\20200611192345_thirty-seven.designer.cs">
+      <DependentUpon>20200611192345_thirty-seven.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200613123538_fourty.cs" />
+    <Compile Include="Migrations\20200613123538_fourty.designer.cs">
+      <DependentUpon>20200613123538_fourty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200613125851_fourty-one.cs" />
+    <Compile Include="Migrations\20200613125851_fourty-one.designer.cs">
+      <DependentUpon>20200613125851_fourty-one.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200613125957_fourty-two.cs" />
+    <Compile Include="Migrations\20200613125957_fourty-two.designer.cs">
+      <DependentUpon>20200613125957_fourty-two.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
@@ -173,6 +246,7 @@
     <Compile Include="Repositories\OrderSellerRepository.cs" />
     <Compile Include="Repositories\PhoneRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

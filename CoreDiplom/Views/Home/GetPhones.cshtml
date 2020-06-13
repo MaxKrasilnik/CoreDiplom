@@ -8,62 +8,67 @@
 
 
 @section Filters{
-    <form action="/" method="post" style="padding-top: 50px;">
+    
+    
+    <form asp-controller="Home" asp-action="GetPhonesSort" method="post" style="padding-top: 50px;">
         <div class="checkbox-container">
-
             <p style="font-weight: bold; margin-bottom: 10px;">Производитель</p>
 
-            <input type="checkbox" id="ch_1">
+            <input type="checkbox" id="ch_1" name="filters" value="Samsung">
             <label for="ch_1">Samsung</label>
 
-            <input type="checkbox" id="ch_2">
-            <label for="ch_2">IPhone</label>
+            <input type="checkbox" id="ch_2" name="filters" value="Apple">
+            <label for="ch_2">Apple</label>
 
-            <input type="checkbox" id="ch_3">
+            <input type="checkbox" id="ch_3" name="filters" value="ASUS">
             <label for="ch_3">ASUS</label>
 
             @*///////////////////////////////////////////*@
             <p style="font-weight: bold; margin-bottom: 10px; margin-top: 10px;">Размер экрана</p>
 
-            <input type="checkbox" id="ch_4">
-            <label for="ch_4">4</label>
+            <input type="checkbox" id="ch_4" name="filters" value="6">
+            <label for="ch_4">6</label>
 
-            <input type="checkbox" id="ch_5">
-            <label for="ch_5">5</label>
+            <input type="checkbox" id="ch_5" name="filters" value="6,5">
+            <label for="ch_5">6,5</label>
 
-            <input type="checkbox" id="ch_6">
-            <label for="ch_6">6</label>
+            <input type="checkbox" id="ch_6" name="filters" value="8">
+            <label for="ch_6">8</label>
 
             @*///////////////////////////////////////////*@
             <p style="font-weight: bold; margin-bottom: 10px; margin-top: 10px;">Оперативная память</p>
 
-            <input type="checkbox" id="ch_7">
+            <input type="checkbox" id="ch_7" name="filters" value="4 Гб">
             <label for="ch_7">4 Гб</label>
 
-            <input type="checkbox" id="ch_8">
+            <input type="checkbox" id="ch_8" name="filters" value="8 Гб">
             <label for="ch_8">8 Гб</label>
 
             @*///////////////////////////////////////////*@
             <p style="font-weight: bold; margin-bottom: 10px; margin-top: 10px;">Операционная система</p>
 
-            <input type="checkbox" id="ch_9">
+            <input type="checkbox" id="ch_9" name="filters" value="Android">
             <label for="ch_9">Android</label>
 
-            <input type="checkbox" id="ch_10">
+            <input type="checkbox" id="ch_10" name="filters" value="IOS">
             <label for="ch_10">IOS</label>
 
-            <button type="button" class="btn btn-outline-dark">Поиск</button>
+            <button type="submit" class="btn btn-outline-dark">Поиск</button>
         </div>
-        
     </form>
+
+        
+    
     
 }
+
+
 
 
 <!--Карточки товаров-->
 
 <div class="container">
-    <div class="row justify-content-between">
+    <div class="row justify-content-around">
 
         @foreach (PhoneViewModel phone in Model)
         {
@@ -81,9 +86,9 @@
                                 <td>Мин. цена</td>
                             </tr>
                             <tr class="card-sale">
-                                <td class="old-sale">@phone.Price</td>
-                                <td class="now-sale">2000</td>
-                                <td>1500</td>
+                                <td class="old-sale">@phone.PriceStart</td>
+                                <td class="now-sale">@phone.PriceNow</td>
+                                <td>@phone.PriceEnd</td>
                             </tr>
                         </table>
                         <div class="infoCardQtyTimer">
@@ -93,8 +98,9 @@
                                     <td>Таймер</td>
                                 </tr>
                                 <tr class="card-sale">
-                                    <td>5</td>
+                                    <td>@phone.QtyEnd</td>
                                     <td class="timerGood"></td>
+                                    @*<td class="timerGood">@phone.Timer.ToString()</td>*@
                                 </tr>
                             </table>
                         </div>
@@ -105,6 +111,122 @@
             </div>
         }
 
+
+
+   
+
+
+        @*<div class="col-md-4">
+            <div class="card">
+                <div class="divImgCardCategories">
+                    <img src="~/images/phone1.jpg" class="imgCardCategories" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="headerCard">Мобильный телефон Samsung Galaxy A31 4/128GB Prism Crush White (SM-A315FZWVSEK)"</h5>
+                    <table>
+                        <tr class="card-sale">
+                            <td>Цена сначала</td>
+                            <td>Цена сейчас</td>
+                            <td>Мин. цена</td>
+                        </tr>
+                        <tr class="card-sale">
+                            <td class="old-sale">6699</td>
+                            <td class="now-sale">6300</td>
+                            <td>6000</td>
+                        </tr>
+                    </table>
+                    <div class="infoCardQtyTimer">
+                        <table>
+                            <tr class="card-sale">
+                                <td>Осталось шт.</td>
+                                <td>Таймер</td>
+                            </tr>
+                            <tr class="card-sale">
+                                <td>4</td>
+                                <td class="timerGood"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <a href='@Url.Action("GetPhone", "Home", new { phoneIdDto=1})' class="btns">Купить</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="divImgCardCategories">
+                    <img src="../../images/phone2.jpg" class="imgCardCategories" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="headerCard">Мобильный телефон Apple Galaxy A31 4/128GB Prism Crush White (SM-A315FZWVSEK)"</h5>
+                    <table>
+                        <tr class="card-sale">
+                            <td>Цена сначала</td>
+                            <td>Цена сейчас</td>
+                            <td>Мин. цена</td>
+                        </tr>
+                        <tr class="card-sale">
+                            <td class="old-sale">25999</td>
+                            <td class="now-sale">23600</td>
+                            <td>23000</td>
+                        </tr>
+                    </table>
+                    <div class="infoCardQtyTimer">
+                        <table>
+                            <tr class="card-sale">
+                                <td>Осталось шт.</td>
+                                <td>Таймер</td>
+                            </tr>
+                            <tr class="card-sale">
+                                <td>4</td>
+                                <td class="timerGood"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <a href='' class="btns">Купить</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="divImgCardCategories">
+                    <img src="../../images/phone3.jpg" class="imgCardCategories" alt="...">
+                </div>
+                <div class="card-body">
+                    <h5 class="headerCard">Мобильный телефон Samsung Galaxy A31 4/128GB Prism Crush White (SM-A315FZWVSEK)"</h5>
+                    <table>
+                        <tr class="card-sale">
+                            <td>Цена сначала</td>
+                            <td>Цена сейчас</td>
+                            <td>Мин. цена</td>
+                        </tr>
+                        <tr class="card-sale">
+                            <td class="old-sale">6299</td>
+                            <td class="now-sale">6100</td>
+                            <td>6000</td>
+                        </tr>
+                    </table>
+                    <div class="infoCardQtyTimer">
+                        <table>
+                            <tr class="card-sale">
+                                <td>Осталось шт.</td>
+                                <td>Таймер</td>
+                            </tr>
+                            <tr class="card-sale">
+                                <td>2</td>
+                                <td class="timerGood"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <a href='' class="btns">Купить</a>
+                </div>
+            </div>
+        </div>*@
 
     </div>
 </div>

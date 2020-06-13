@@ -26,6 +26,7 @@ namespace NLayerApp.DAL.Repositories
 
         public Phone Get(int id)
         {
+
             return db.Phones.Find(id);
         }
 

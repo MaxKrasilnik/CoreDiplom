@@ -229,6 +229,69 @@ namespace NLayerApp.BLL.Services
 
 
 
+        //--------------------User---------------------
+
+        public void CreateUser(UserDTO userDto)
+        {
+            if (userDto == null)
+                throw new ValidationException("При добавлении нового пользователя произошла ошибка. Экземпляр объекта UserDTO равен null.", "");
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, User>()).CreateMapper();
+            User user = mapper.Map<UserDTO, User>(userDto);
+
+            Database.Users.Create(user);
+            Database.Save();
+        }
+
+        public void UpdateUser(UserDTO userDto)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, User>()).CreateMapper();
+            User user = mapper.Map<UserDTO, User>(userDto);
+
+            Database.Users.Update(user);
+            Database.Save();
+        }
+
+        public UserDTO GetUser(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Не установлено id пользователя", "");
+            var user = Database.Users.Get(id.Value);
+            if (user == null)
+                throw new ValidationException("Пользователь не найден", "");
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<User, UserDTO>()).CreateMapper();
+            return mapper.Map<User, UserDTO>(user);
+        }
+
+        public IEnumerable<UserDTO> GetUsers()
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<User, UserDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<User>, List<UserDTO>>(Database.Users.GetAll());
+        }
+
+        public void DeleteUser(int id)
+        {
+            Database.Users.Delete(id);
+            Database.Save();
+        }
+
+
+
+        //--------------------Product---------------------
+
+        public string GetProduct(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Не установлено id", "");
+            var product = Database.Products.Get(id.Value);
+            if (product == null)
+                throw new ValidationException("Hе найден", "");
+
+            return product.Category;
+        }
+
+
 
 
         public void Dispose()

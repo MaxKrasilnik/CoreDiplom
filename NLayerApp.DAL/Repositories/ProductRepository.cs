@@ -21,7 +21,7 @@ namespace NLayerApp.DAL.Repositories
 
         public IEnumerable<Product> GetAll()
         {
-            return db.Products;
+            return db.Products.Include(i => i.Images).Include(i => i.OrderSeller);
         }
 
         public Product Get(int id)

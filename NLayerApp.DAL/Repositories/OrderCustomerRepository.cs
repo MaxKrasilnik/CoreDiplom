@@ -21,7 +21,7 @@ namespace NLayerApp.DAL.Repositories
 
         public IEnumerable<OrderCustomer> GetAll()
         {
-            return db.OrderCustomers;
+            return db.OrderCustomers.Include(i => i.User);
         }
 
         public OrderCustomer Get(int id)
@@ -41,7 +41,7 @@ namespace NLayerApp.DAL.Repositories
 
         public IEnumerable<OrderCustomer> Find(Func<OrderCustomer, Boolean> predicate)
         {
-            return db.OrderCustomers.Where(predicate).ToList();
+            return db.OrderCustomers.Where(predicate);
         }
 
         public void Delete(int id)

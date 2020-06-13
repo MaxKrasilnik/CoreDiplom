@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Registration</h1>
+
+<h3 style="text-align: center; margin-bottom: 20px;">Войдите в систему или зарегистрируйтесь</h3>
+<div style="display: flex; width: 100%; height: 100%; justify-content: center; align-items: center; flex-direction:column;">
+    <form asp-controller="Home" asp-action="CreateOrderCustomerAfterAuthorization" method="post"
+          style="width: 400px; text-align: center;">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Введите свой еmail</label>
+            <input type="email" class="form-control" placeholder="Введите свой email" name="Email" style="text-align: center;">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Введите свой пароль</label>
+            <input type="password" class="form-control" placeholder="Введите пароль" name="Password" style="text-align: center;">
+        </div>
+        <input class="form-control" type="hidden" name="Role" value="User" />
+        @{ ViewBag.OrdSelId = ViewData["OrdSelId"];}
+
+        <div>
+            <div class="col-md-offset-6 col-md-6" style="margin: auto;">
+                <input style="margin: auto; font-size: 14pt; padding: 5px 15px; border: none;" type="submit" class="btns" value="Войти" />
+            </div>
+        </div>
+    </form>
+
+    <div style="padding-top: 20px;">
+        <div class="col-md-offset-6 col-md-6">
+            <a href='@Url.Action("CreateOrderCustomer", "Home")' class="btns" style="font-size: 14pt; padding: 7px 15px; border: none; text-align: center;">Зарегистрироваться</a>
+        </div>
+    </div>
+
+
+</div>

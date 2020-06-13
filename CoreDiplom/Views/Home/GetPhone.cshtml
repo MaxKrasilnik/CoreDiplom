@@ -42,8 +42,9 @@
     </div>
     <div id="getPhoneInfo">
         <div style="display: flex; justify-content: space-around;">
-            <p style="color: #ea5455; font-size: 24pt;">@Model.Price &#8372;</p>
-            <a href='@Url.Action("GetPhone", "Home")' class="btns" style="width: 200px; height: 50px; text-align: center;">Купить</a>
+            <p style="color: #ea5455; font-size: 24pt;">6300 &#8372;</p>
+            
+            <a href='@Url.Action("CreateOrderCustomer", "Home", new { prodId = Model.Id })' class="btns" style="width: 200px; height: 50px; text-align: center;">Купить</a>
         </div>
 
         <p style="text-align: center; font-size: 16pt; font-weight: 600;">Характеристики</p>
@@ -68,7 +69,7 @@
         </p>
 
         <p style="text-align: center; font-size: 16pt; font-weight: 600;">Описание</p>
-        <p>@Model.OrderSeller.Description</p>
+        <p>Samsung Galaxy A31 – смартфон среднего ценового сегмента, сочетающий в себе хороший уровень оснащения, емкий аккумулятор и строгий обновленный дизайн. Элегантные цвета корпуса дополнены стильным узором, что прибавляет баллы внешнему виду устройства. В Samsung Galaxy A31 устанавливается 6,4-дюймовый sAMOLED дисплей с разрешением 2400х1080 точек и плотностью пикселей 411 ppi. Достаточную для комфортного повседневного использования производительность обеспечивает 8-ядерный процессор. Основная камера состоит из 4 модулей на 48, 8 и пары по 5 МП. Фронтальная камера установлена в небольшом каплевидном вырезе в экране и оснащается 20 МП модулем. Особенностью Samsung Galaxy A31 является также встроенный в дисплей сканер отпечатков пальцев, а также наличие NFC. </p>
     </div>
 
 </div>

@@ -16,5 +16,6 @@ namespace NLayerApp.DAL.Entities
         public int QtySimCard { get; set; }//количество SIM-карт
         public int Charge { get; set; }//объем заряда устройства
         public string OperationSystem { get; set; }//операционная система
+
     }
 }

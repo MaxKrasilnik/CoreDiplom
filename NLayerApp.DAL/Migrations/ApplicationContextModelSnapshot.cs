@@ -51,15 +51,106 @@ namespace NLayerApp.DAL.Migrations
                         new
                         {
                             Id = 2,
+                            Name = "phone1_1.jpg",
+                            Path = "/images/phone1_1.jpg",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "phone1_2.jpg",
+                            Path = "/images/phone1_2.jpg",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "phone1_3.jpg",
+                            Path = "/images/phone1_3.jpg",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "phone1_4.jpg",
+                            Path = "/images/phone1_4.jpg",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "phone1_5.jpg",
+                            Path = "/images/phone1_5.jpg",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
                             Name = "phone2.jpg",
                             Path = "/images/phone2.jpg",
                             ProductId = 2
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 8,
+                            Name = "phone2_1.jpg",
+                            Path = "/images/phone2_1.jpg",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "phone2_2.jpg",
+                            Path = "/images/phone2_2.jpg",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "phone2_3.jpg",
+                            Path = "/images/phone2_3.jpg",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "phone2_4.jpg",
+                            Path = "/images/phone2_4.jpg",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 12,
                             Name = "phone3.jpg",
                             Path = "/images/phone3.jpg",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "phone3_1.jpg",
+                            Path = "/images/phone3_1.jpg",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "phone3_2.jpg",
+                            Path = "/images/phone3_2.jpg",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "phone3_3.jpg",
+                            Path = "/images/phone3_3.jpg",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "phone3_4.jpg",
+                            Path = "/images/phone3_4.jpg",
                             ProductId = 3
                         });
                 });
@@ -77,18 +168,21 @@ namespace NLayerApp.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrderSellerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Patronymic")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProdId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderSellerId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("OrderCustomers");
 
@@ -98,54 +192,60 @@ namespace NLayerApp.DAL.Migrations
                             Id = 1,
                             Address = "ул.Иванова 9",
                             Name = "Иван",
-                            OrderSellerId = 2,
                             Patronymic = "Иванович",
-                            Surname = "Иванов"
+                            ProdId = 1,
+                            Surname = "Иванов",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 2,
                             Address = "ул.Васильева 28",
                             Name = "Василий",
-                            OrderSellerId = 1,
                             Patronymic = "Васильевич",
-                            Surname = "Васильев"
+                            ProdId = 1,
+                            Surname = "Васильев",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 3,
                             Address = "ул.Петрова 55",
                             Name = "Петр",
-                            OrderSellerId = 3,
                             Patronymic = "Петрович",
-                            Surname = "Петров"
+                            ProdId = 1,
+                            Surname = "Петров",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 4,
                             Address = "ул.Евгенова 5",
                             Name = "Евгений",
-                            OrderSellerId = 2,
                             Patronymic = "Евгеньевич",
-                            Surname = "Евгенов"
+                            ProdId = 2,
+                            Surname = "Евгенов",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 5,
                             Address = "ул.Юрьева 30",
                             Name = "Юрий",
-                            OrderSellerId = 1,
                             Patronymic = "Юрьевич",
-                            Surname = "Юрьев"
+                            ProdId = 3,
+                            Surname = "Юрьев",
+                            UserId = 2
                         },
                         new
                         {
                             Id = 6,
                             Address = "ул.Григорьева 12",
                             Name = "Григорий",
-                            OrderSellerId = 3,
                             Patronymic = "Григорьевич",
-                            Surname = "Григорьев"
+                            ProdId = 3,
+                            Surname = "Григорьев",
+                            UserId = 2
                         });
                 });
 
@@ -162,7 +262,12 @@ namespace NLayerApp.DAL.Migrations
                     b.Property<string>("Header")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("OrderSellers");
 
@@ -171,19 +276,22 @@ namespace NLayerApp.DAL.Migrations
                         {
                             Id = 1,
                             Description = "Description1",
-                            Header = "Header1"
+                            Header = "Header1",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 2,
                             Description = "Description3",
-                            Header = "Header3"
+                            Header = "Header3",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 3,
                             Description = "Description2",
-                            Header = "Header2"
+                            Header = "Header2",
+                            UserId = 2
                         });
                 });
 
@@ -210,8 +318,20 @@ namespace NLayerApp.DAL.Migrations
                     b.Property<int>("OrderSellerId")
                         .HasColumnType("int");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.Property<int>("PriceEnd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PriceNow")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PriceStart")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QtyEnd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QtyStart")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -221,6 +341,50 @@ namespace NLayerApp.DAL.Migrations
                     b.ToTable("Products");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Product");
+                });
+
+            modelBuilder.Entity("NLayerApp.DAL.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "email1@gmail.com",
+                            Password = "Password1!",
+                            Role = "User"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "email2@gmail.com",
+                            Password = "Password2!",
+                            Role = "User"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "email3@gmail.com",
+                            Password = "Password3!",
+                            Role = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("NLayerApp.DAL.Entities.Phone", b =>
@@ -259,9 +423,13 @@ namespace NLayerApp.DAL.Migrations
                             Id = 1,
                             Category = "Phone",
                             Manufacturer = "Samsung",
-                            Name = "Phone1",
+                            Name = "Мобильный телефон Samsung Galaxy A31 4/128GB Prism Crush White (SM-A315FZWVSEK)",
                             OrderSellerId = 1,
-                            Price = 2000f,
+                            PriceEnd = 6000,
+                            PriceNow = 6350,
+                            PriceStart = 6700,
+                            QtyEnd = 5,
+                            QtyStart = 10,
                             CPU = "CPU1",
                             Camera = "Camera1",
                             Charge = 3000,
@@ -276,9 +444,13 @@ namespace NLayerApp.DAL.Migrations
                             Id = 2,
                             Category = "Phone",
                             Manufacturer = "Apple",
-                            Name = "Phone2",
+                            Name = "Мобильный телефон Apple iPhone 11 128GB PRODUCT Red Официальная гарантия",
                             OrderSellerId = 2,
-                            Price = 4000f,
+                            PriceEnd = 23000,
+                            PriceNow = 24200,
+                            PriceStart = 26000,
+                            QtyEnd = 2,
+                            QtyStart = 5,
                             CPU = "CPU2",
                             Camera = "Camera2",
                             Charge = 2500,
@@ -293,9 +465,13 @@ namespace NLayerApp.DAL.Migrations
                             Id = 3,
                             Category = "Phone",
                             Manufacturer = "ASUS",
-                            Name = "Phone3",
+                            Name = "Мобильный телефон Samsung Galaxy M21 4/64GB Green (SM-M215FZGUSEK)",
                             OrderSellerId = 3,
-                            Price = 3000f,
+                            PriceEnd = 6000,
+                            PriceNow = 6090,
+                            PriceStart = 6300,
+                            QtyEnd = 3,
+                            QtyStart = 10,
                             CPU = "CPU3",
                             Camera = "Camera3",
                             Charge = 5000,
@@ -318,9 +494,18 @@ namespace NLayerApp.DAL.Migrations
 
             modelBuilder.Entity("NLayerApp.DAL.Entities.OrderCustomer", b =>
                 {
-                    b.HasOne("NLayerApp.DAL.Entities.OrderSeller", "OrderSeller")
+                    b.HasOne("NLayerApp.DAL.Entities.User", "User")
                         .WithMany("OrderCustomers")
-                        .HasForeignKey("OrderSellerId")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("NLayerApp.DAL.Entities.OrderSeller", b =>
+                {
+                    b.HasOne("NLayerApp.DAL.Entities.User", "User")
+                        .WithMany("OrderSellers")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

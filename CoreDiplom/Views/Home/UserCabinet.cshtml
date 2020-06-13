@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "UserCabinet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div style="padding-top: 50px;"></div>
+<h1>UserCabinet</h1>
+
+
+
+<div style="display: flex; justify-content: space-around;">
+    <a href='@Url.Action("GetPhone", "Home", new { })' class="btns" id="seller">Мои объявления</a>
+    <a href='@Url.Action("GetPhone", "Home", new { })' class="btns" id="customer">Мои заказы</a>
+</div>
+
+<div>
+    @*@if()
+    {
+        Html.Partial("GetInfo");
+    }*@
+</div>

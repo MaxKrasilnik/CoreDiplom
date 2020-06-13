@@ -13,8 +13,9 @@ namespace NLayerApp.WEB.Models
         public string Surname { get; set; }
         public string Patronymic { get; set; }
         public string Address { get; set; }
+        public int ProdId { get; set; }
 
-        public int OrderSellerId { get; set; }
-        public OrderSeller OrderSeller { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace NLayerApp.DAL.Repositories
 
         public IEnumerable<Image> GetAll()
         {
-            return db.Images;
+            return db.Images.Include(i=>i.Product);
         }
 
         public Image Get(int id)
@@ -41,7 +41,7 @@ namespace NLayerApp.DAL.Repositories
 
         public IEnumerable<Image> Find(Func<Image, Boolean> predicate)
         {
-            return db.Images.Where(predicate).ToList();
+            return db.Images.Where(predicate);
         }
 
         public void Delete(int id)

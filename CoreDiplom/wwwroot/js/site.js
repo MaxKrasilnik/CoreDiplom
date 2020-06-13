@@ -2,7 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-var countDownDate = new Date("Jul 1, 2020 00:00:00").getTime();
+var countDownDate = new Date("June 21, 2020 00:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function () {
@@ -36,3 +36,13 @@ var x = setInterval(function () {
 
     }
 }, 1000);
+
+
+
+
+
+
+
+
+
+

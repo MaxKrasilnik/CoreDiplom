@@ -18,6 +18,7 @@ namespace NLayerApp.DAL.Repositories
         private OrderCustomerRepository orderCustomerRepository;
         private OrderSellerRepository orderSellerRepository;
         private ImageRepository imageRepository;
+        private UserRepository userRepository;
 
         public EFUnitOfWork(ApplicationContext context)
         {
@@ -71,6 +72,16 @@ namespace NLayerApp.DAL.Repositories
                 if (imageRepository == null)
                     imageRepository = new ImageRepository(db);
                 return imageRepository;
+            }
+        }
+
+        public IRepository<User> Users
+        {
+            get
+            {
+                if (userRepository == null)
+                    userRepository = new UserRepository(db);
+                return userRepository;
             }
         }
 

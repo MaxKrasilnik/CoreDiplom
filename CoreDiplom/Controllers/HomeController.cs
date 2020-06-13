@@ -16,6 +16,10 @@ using System.Net;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Threading;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using System.Reflection;
 
 namespace NLayerApp.WEB
 {
@@ -23,6 +27,9 @@ namespace NLayerApp.WEB
     {
         IService service;
         IWebHostEnvironment _appEnvironment;
+        bool authorization = false;
+        int authorizUserId = 0;
+        int orderSelId=0;
 
         public HomeController(IService serv, IWebHostEnvironment appEnvironment)
         {
@@ -32,13 +39,53 @@ namespace NLayerApp.WEB
 
         public ActionResult Index()
         {
-            //IEnumerable<PhoneDTO> phoneDtos = service.GetPhones();
-            //var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
-            //var phones = mapper.Map<IEnumerable<PhoneDTO>, List<PhoneViewModel>>(phoneDtos);
-
-            //return View(phones.First());
             return View();
         }
+
+
+        [HttpPost]
+        public ActionResult UserCabinet(string email, string password)
+        {
+            IEnumerable<UserDTO> users = service.GetUsers();
+            UserDTO needUser;
+            try
+            {
+                needUser = users.Where(u => u.Email == email && u.Password == password)
+                .First();
+            }
+            catch(Exception ex)
+            {
+                return View("Index");
+            }
+
+            authorization = true;
+            authorizUserId = needUser.Id;
+            //OrderSellerDTO order = service.GetOrderSeller(1);
+
+
+            /*var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
+            List<PhoneViewModel> phoneVMs = mapper.Map<List<PhoneDTO>, List<PhoneViewModel>>(service.GetPhones());
+
+            int page = 1;
+            int pageSize = 3; // количество объектов на страницу
+            IEnumerable<PhoneViewModel> phonesPerPages = phoneVMs.Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = phoneVMs.Count };
+            IndexViewModel ivm = new IndexViewModel { PageInfo = pageInfo, Phones = phonesPerPages };
+            return View(ivm);*/
+            return View();
+        }
+
+        public ActionResult GetInfo()
+        {
+            return PartialView("");
+        }
+
+
+
+
+
+        //--------------------Image---------------------
+
 
 
         [HttpGet]
@@ -86,19 +133,8 @@ namespace NLayerApp.WEB
             return View(imageVM);
         }
 
-        /*[HttpPost]
-        public ActionResult Test(ImageViewModel imageVM)
-        {
-            if (ModelState.IsValid)
-            {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ImageViewModel, ImageDTO>()).CreateMapper();
-                ImageDTO imageDto = mapper.Map<ImageViewModel, ImageDTO>(imageVM);
-                service.CreateImage(imageDto);
 
-                return Content("<h2>Ваш заказ успешно оформлен</h2>");
-            }
-            return View();
-        }*/
+
 
         //--------------------Phone---------------------
 
@@ -139,7 +175,25 @@ namespace NLayerApp.WEB
             PhoneDTO phoneDto = mapper.Map<PhoneViewModel, PhoneDTO>(phoneVM);
             service.UpdatePhone(phoneDto);
 
-            return Content("<div style='text-align: center;'><h2>Изменения сохранены успешно</h2></div>");
+            return View("Index");
+        }
+
+        [HttpGet]
+        public ActionResult UpdatePhoneCust(PhoneViewModel phoneVM)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneViewModel, PhoneDTO>()).CreateMapper();
+            PhoneDTO phoneDto = mapper.Map<PhoneViewModel, PhoneDTO>(phoneVM);
+            service.UpdatePhone(phoneDto);
+
+            return View("Index");
+        }
+
+
+        public void UpdatePhoneCustomer(PhoneViewModel phoneVM)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneViewModel, PhoneDTO>()).CreateMapper();
+            PhoneDTO phoneDto = mapper.Map<PhoneViewModel, PhoneDTO>(phoneVM);
+            service.UpdatePhone(phoneDto);
         }
 
         public ActionResult GetPhone(int phoneIdDto)
@@ -170,6 +224,56 @@ namespace NLayerApp.WEB
             return View(phoneVMs);
         }
 
+        [HttpPost]
+        public ActionResult GetPhonesSort(string[] filters)
+        {
+            List<PhoneDTO> phoneDTOs = service.GetPhones();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO, PhoneViewModel>()).CreateMapper();
+            List<PhoneViewModel> phoneVMs = mapper.Map<List<PhoneDTO>, List<PhoneViewModel>>(phoneDTOs);
+
+            List<PhoneViewModel> rezult = new List<PhoneViewModel>();
+
+
+            for(int i =0; i < filters.Length; i++)
+            {
+                switch(filters[i])
+                {
+                    case "Samsung":
+                        rezult.AddRange(phoneVMs.Where(p => p.Manufacturer == "Samsung"));
+                        break;
+                    case "Apple":
+                        rezult.AddRange(phoneVMs.Where(p => p.Manufacturer == "Apple"));
+                        break;
+                    case "ASUS":
+                        rezult.AddRange(phoneVMs.Where(p => p.Manufacturer == "ASUS"));
+                        break;
+                    case "6":
+                        rezult.AddRange(phoneVMs.Where(p => p.Screen == 6));
+                        break;
+                    case "6,5":
+                        rezult.AddRange(phoneVMs.Where(p => p.Screen == 6.5));
+                        break;
+                    case "8":
+                        rezult.AddRange(phoneVMs.Where(p => p.Screen == 8));
+                        break;
+                    case "4 Гб":
+                        rezult.AddRange(phoneVMs.Where(p => p.RAM == 4));
+                        break;
+                    case "8 Гб":
+                        rezult.AddRange(phoneVMs.Where(p => p.RAM == 8));
+                        break;
+                    case "Android":
+                        rezult.AddRange(phoneVMs.Where(p => p.OperationSystem == "Android"));
+                        break;
+                    case "IOS":
+                        rezult.AddRange(phoneVMs.Where(p => p.OperationSystem == "IOS"));
+                        break;
+                }
+            }
+
+            return View("GetPhones", rezult.Distinct().ToList());
+        }
+
         [HttpGet]
         public ActionResult DeletePhone(int? phoneIdDto)
         {
@@ -194,6 +298,7 @@ namespace NLayerApp.WEB
             service.DeletePhone(phoneVM.Id);
             return Content("<h2>Телефон удален</h2>");
         }
+
 
 
 
@@ -279,10 +384,58 @@ namespace NLayerApp.WEB
 
         //--------------------OrderCustomer---------------------
         [HttpGet]
-        public ActionResult CreateOrderCustomer()
+        public ActionResult CreateOrderCustomer(int prodId)
+        {
+            ViewData["prodId"] = prodId;
+            if (authorization == false && authorizUserId == 0)
+            {
+                
+                return View("Authorization");
+            }
+           
+            ViewData["UserId"] = authorizUserId;
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult CreateOrderCustomerAfterAuthorization(string email, string password, int prodId)
+        {
+            IEnumerable<UserDTO> users = service.GetUsers();
+            UserDTO needUser;
+            try
+            {
+                needUser = users.Where(u => u.Email == email && u.Password == password)
+                .First();
+            }
+            catch (Exception ex)
+            {
+                ViewData["prodId"] = prodId;
+                return View("Authorization");
+            }
+
+            authorization = true;
+            authorizUserId = needUser.Id;
+
+            ViewData["prodId"] = prodId;
+            ViewData["UserId"] = authorizUserId;
+
+            return View("CreateOrderCustomer");
+        }
+
+
+        int Price(int priceStart, int priceEnd, int qty)
+        {
+            return priceEnd + Convert.ToInt32((priceStart - priceEnd) * 0.1 * qty);
+        }
+
+
+        public ActionResult ProductEnded()
         {
             return View();
         }
+
 
         [HttpPost]
         public ActionResult CreateOrderCustomer(OrderCustomerViewModel customerVM)
@@ -294,8 +447,39 @@ namespace NLayerApp.WEB
                 OrderCustomerDTO customerDto = mapper.Map<OrderCustomerViewModel, OrderCustomerDTO>(customerVM);
                 service.CreateOrderCustomer(customerDto);
 
-                return Content("<h2>Ваш заказ успешно оформлен</h2>");
+                string category = service.GetProduct(customerVM.ProdId);
+
+                if(category== "Phone")
+                {
+                    PhoneDTO phoneDTO = service.GetPhone(customerVM.ProdId);
+
+                    if(phoneDTO.QtyEnd==0)
+                    {
+                        return View("ProductEnded");
+                    }
+
+                    phoneDTO.QtyEnd--;
+                    phoneDTO.PriceNow = Price(phoneDTO.PriceStart, phoneDTO.PriceEnd, phoneDTO.QtyEnd);
+
+
+                    var mapper1 = new MapperConfiguration(cfg => cfg.CreateMap<PhoneDTO,
+                    PhoneViewModel>()).CreateMapper();
+                    PhoneViewModel phoneVM = mapper1.Map<PhoneDTO, PhoneViewModel>(phoneDTO);
+
+
+                    return View("ThanksPagePhone", phoneVM);
+                }
+
+
+                return View("ThanksPagePhone");
             }
+            return View("ThanksPagePhone");
+        }
+
+        [HttpPost]
+        public ActionResult CreateUser(UserViewModel userVM)
+        {
+
             return View();
         }
 
@@ -353,6 +537,17 @@ namespace NLayerApp.WEB
 
 
 
+
+        //--------------------User---------------------
+
+        public ActionResult GetUsers()
+        {
+            IEnumerable<UserDTO> userDTOs = service.GetUsers();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UserDTO, UserViewModel>()).CreateMapper();
+            List<UserViewModel> userVMs = mapper.Map<List<UserDTO>, List<UserViewModel>>(userDTOs.ToList());
+
+            return View(userVMs);
+        }
 
 
 

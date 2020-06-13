@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "ProductEnded";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ProductEnded</h1>
+
+<div class="modal-content" style="width: 100%; height: 400px; display: flex; justify-content: center; align-items: center;">
+    <div style="text-align: center;">
+        <p style="font-size: 24px; padding-bottom: 15px;">Заказ продавца полностью сформирован. Посмотрите другие объявления</p>
+        <a href='@Url.Action("Index", "Home")' class="btns" style="width: 200px; height: 50px; text-align: center; margin: auto;">На главную</a>
+    </div>
+</div>

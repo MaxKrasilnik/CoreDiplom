@@ -21,7 +21,7 @@ namespace NLayerApp.DAL.Repositories
 
         public IEnumerable<OrderSeller> GetAll()
         {
-            return db.OrderSellers.Include(o => o.Product).Include(o=>o.OrderCustomers);
+            return db.OrderSellers.Include(o => o.Product).Include(o=>o.User);
         }
 
         public OrderSeller Get(int id)
@@ -41,8 +41,7 @@ namespace NLayerApp.DAL.Repositories
 
         public IEnumerable<OrderSeller> Find(Func<OrderSeller, Boolean> predicate)
         {
-            return db.OrderSellers.Include(o => o.Product)
-                .Include(o=>o.OrderCustomers).Where(predicate).ToList();
+            return db.OrderSellers.Include(o => o.Product).Where(predicate);
         }
 
         public void Delete(int id)
