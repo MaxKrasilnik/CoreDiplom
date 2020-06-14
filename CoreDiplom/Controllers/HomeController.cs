@@ -469,13 +469,32 @@ namespace NLayerApp.WEB
                     return View("ThanksPagePhone", phoneVM);
                 }
 
+                if (category == "TV")
+                {
+                    TVDTO tvDTO = service.GetTV(customerVM.ProdId);
+
+                    if (tvDTO.QtyEnd == 0)
+                    {
+                        return View("ProductEnded");
+                    }
+
+                    tvDTO.QtyEnd--;
+                    tvDTO.PriceNow = Price(tvDTO.PriceStart, tvDTO.PriceEnd, tvDTO.QtyEnd);
+
+
+                    var mapper1 = new MapperConfiguration(cfg => cfg.CreateMap<TVDTO,
+                    TVViewModel>()).CreateMapper();
+                    TVViewModel tvVM = mapper1.Map<TVDTO, TVViewModel>(tvDTO);
+
+
+                    return View("ThanksPageTV", tvVM);
+                }
+
 
                 return View("ThanksPagePhone");
             }
             return View("ThanksPagePhone");
         }
-
-  
 
         [HttpGet]
         public ActionResult UpdateOrderCustomer(int customerIdDto)
@@ -638,9 +657,34 @@ namespace NLayerApp.WEB
             return View("GetTVs", rezult.Distinct().ToList());
         }
 
+        public ActionResult GetTV(int tvIdDto)
+        {
+            TVDTO tvDTO = service.GetTV(tvIdDto);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TVDTO, TVViewModel>()).CreateMapper();
+            TVViewModel tvVM = mapper.Map<TVDTO, TVViewModel>(tvDTO);
 
+            var mapper1 = new MapperConfiguration(cfg => cfg.CreateMap<ImageDTO, Image>()).CreateMapper();
+            IEnumerable<Image> images = mapper1.Map<IEnumerable<ImageDTO>, IEnumerable<Image>>(service.GetImages());
 
+            tvVM.Images.AddRange(images.Where(i => i.ProductId == tvVM.Id));
 
+            var mapper2 = new MapperConfiguration(cfg => cfg.CreateMap<OrderSellerDTO, OrderSeller>()).CreateMapper();
+            OrderSeller seller = mapper2.Map<OrderSellerDTO, OrderSeller>(service.GetOrderSeller(tvVM.OrderSellerId));
+
+            tvVM.OrderSeller = seller;
+
+            return View(tvVM);
+        }
+
+        [HttpGet]
+        public ActionResult UpdateTVCust(TVViewModel tvVM)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TVViewModel, TVDTO>()).CreateMapper();
+            TVDTO tvDto = mapper.Map<TVViewModel, TVDTO>(tvVM);
+            service.UpdateTV(tvDto);
+
+            return View("Index");
+        }
 
 
 
