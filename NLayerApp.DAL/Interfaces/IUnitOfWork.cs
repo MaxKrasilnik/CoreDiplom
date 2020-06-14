@@ -12,6 +12,7 @@ namespace NLayerApp.DAL.Interfaces
         IRepository<Product> Products { get; }
         IRepository<Phone> Phones { get; }
         IRepository<TV> TVs { get; }
+        IRepository<Laptop> Laptops { get; }
         IRepository<OrderCustomer> OrderCustomers { get; }
         IRepository<OrderSeller> OrderSellers { get; }
         IRepository<Image> Images { get; }

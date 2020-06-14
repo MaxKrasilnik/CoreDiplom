@@ -16,6 +16,7 @@ namespace NLayerApp.DAL.Repositories
         private ProductRepository productRepository;
         private PhoneRepository phoneRepository;
         private TVRepository tvRepository;
+        private LaptopRepository laptopRepository;
         private OrderCustomerRepository orderCustomerRepository;
         private OrderSellerRepository orderSellerRepository;
         private ImageRepository imageRepository;
@@ -53,6 +54,16 @@ namespace NLayerApp.DAL.Repositories
                 if (tvRepository == null)
                     tvRepository = new TVRepository(db);
                 return tvRepository;
+            }
+        }
+
+        public IRepository<Laptop> Laptops
+        {
+            get
+            {
+                if (laptopRepository == null)
+                    laptopRepository = new LaptopRepository(db);
+                return laptopRepository;
             }
         }
 

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\ImageDTO.cs" />
+    <Compile Include="DTO\LaptopDTO.cs" />
     <Compile Include="DTO\OrderCustomerDTO.cs" />
     <Compile Include="DTO\OrderSellerDTO.cs" />
     <Compile Include="DTO\PhoneDTO.cs" />

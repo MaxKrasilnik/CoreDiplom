@@ -294,17 +294,73 @@ namespace NLayerApp.BLL.Services
 
 
         //--------------------TV---------------------
-        public void CreateTV(TVDTO tvDto)
+        public void CreateLaptop(LaptopDTO laptopDto)
         {
-            if (tvDto == null)
+            if (laptopDto == null)
+                throw new ValidationException("При добавлении нового ноутбука произошла ошибка. Экземпляр объекта LaptopDTO равен null.", "");
+            if (laptopDto.OrderSellerId == 0)
+                throw new ValidationException("Заказ продавца не найден", "");
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<LaptopDTO, Laptop>()).CreateMapper();
+            Laptop laptop = mapper.Map<LaptopDTO, Laptop>(laptopDto);
+
+            OrderSeller seller = Database.OrderSellers.Get(laptopDto.OrderSellerId);
+            laptop.OrderSeller = seller;
+
+            Database.Laptops.Create(laptop);
+            Database.Save();
+        }
+
+        public void UpdateLaptop(LaptopDTO laptopDto)
+        {
+            if (laptopDto == null)
+                throw new ValidationException("При обновлении ноутбука произошла ошибка. Экземпляр объекта LaptopDTO равен null.", "");
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<LaptopDTO, Laptop>()).CreateMapper();
+            Laptop laptop = mapper.Map<LaptopDTO, Laptop>(laptopDto);
+
+            Database.Laptops.Update(laptop);
+            Database.Save();
+        }
+
+        public LaptopDTO GetLaptop(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Не установлено id ноутбука", "");
+            var laptop = Database.Laptops.Get(id.Value);
+            if (laptop == null)
+                throw new ValidationException("Hоутбук не найден", "");
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Laptop, LaptopDTO>()).CreateMapper();
+            return mapper.Map<Laptop, LaptopDTO>(laptop);
+        }
+
+        public List<LaptopDTO> GetLaptops()
+        {
+            // применяем автомаппер для проекции одной коллекции на другую
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Laptop, LaptopDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<Laptop>, List<LaptopDTO>>(Database.Laptops.GetAll());
+        }
+
+        public void DeleteLaptop(int id)
+        {
+            Database.Laptops.Delete(id);
+            Database.Save();
+        }
+
+
+
+        //--------------------Laptop---------------------
+        public void CreateTV(TVDTO laptopDto)
+        {
+            if (laptopDto == null)
                 throw new ValidationException("При добавлении нового телевизора произошла ошибка. Экземпляр объекта TVDTO равен null.", "");
-            if (tvDto.OrderSellerId == 0)
+            if (laptopDto.OrderSellerId == 0)
                 throw new ValidationException("Заказ продавца не найден", "");
 
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TVDTO, TV>()).CreateMapper();
-            TV tv = mapper.Map<TVDTO, TV>(tvDto);
+            TV tv = mapper.Map<TVDTO, TV>(laptopDto);
 
-            OrderSeller seller = Database.OrderSellers.Get(tvDto.OrderSellerId);
+            OrderSeller seller = Database.OrderSellers.Get(laptopDto.OrderSellerId);
             tv.OrderSeller = seller;
 
             Database.TVs.Create(tv);

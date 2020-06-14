@@ -49,6 +49,12 @@ namespace NLayerApp.BLL.Interfaces
         void UpdateTV(TVDTO tvDto);
         void DeleteTV(int id);
 
+        void CreateLaptop(LaptopDTO laptopDto);
+        LaptopDTO GetLaptop(int? id);
+        List<LaptopDTO> GetLaptops();
+        void UpdateLaptop(LaptopDTO laptopDto);
+        void DeleteLaptop(int id);
+
         void Dispose();
     }
 }

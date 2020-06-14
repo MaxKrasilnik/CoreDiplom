@@ -490,6 +490,27 @@ namespace NLayerApp.WEB
                     return View("ThanksPageTV", tvVM);
                 }
 
+                if (category == "Laptop")
+                {
+                    LaptopDTO laptopDTO = service.GetLaptop(customerVM.ProdId);
+
+                    if (laptopDTO.QtyEnd == 0)
+                    {
+                        return View("ProductEnded");
+                    }
+
+                    laptopDTO.QtyEnd--;
+                    laptopDTO.PriceNow = Price(laptopDTO.PriceStart, laptopDTO.PriceEnd, laptopDTO.QtyEnd);
+
+
+                    var mapper1 = new MapperConfiguration(cfg => cfg.CreateMap<LaptopDTO,
+                    LaptopViewModel>()).CreateMapper();
+                    LaptopViewModel laptopVM = mapper1.Map<LaptopDTO, LaptopViewModel>(laptopDTO);
+
+
+                    return View("ThanksPageLaptop", laptopVM);
+                }
+
 
                 return View("ThanksPagePhone");
             }
@@ -603,7 +624,6 @@ namespace NLayerApp.WEB
             return View(tvVMs);
         }
 
-
         [HttpPost]
         public ActionResult GetTVsSort(string[] filters)
         {
@@ -689,14 +709,96 @@ namespace NLayerApp.WEB
 
 
 
+        //--------------------Laptop---------------------
+
+        public ActionResult GetLaptops()
+        {
+            List<LaptopDTO> laptopDTOs = service.GetLaptops();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<LaptopDTO, LaptopViewModel>()).CreateMapper();
+            List<LaptopViewModel> laptopVMs = mapper.Map<List<LaptopDTO>, List<LaptopViewModel>>(laptopDTOs);
+
+            return View(laptopVMs);
+        }
+
+        [HttpPost]
+        public ActionResult GetLaptopsSort(string[] filters)
+        {
+            List<LaptopDTO> laptopDTOs = service.GetLaptops();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<LaptopDTO, LaptopViewModel>()).CreateMapper();
+            List<LaptopViewModel> laptopVMs = mapper.Map<List<LaptopDTO>, List<LaptopViewModel>>(laptopDTOs);
+
+            List<LaptopViewModel> rezult = new List<LaptopViewModel>();
 
 
+            for (int i = 0; i < filters.Length; i++)
+            {
+                switch (filters[i])
+                {
+                    case "Lenovo":
+                        rezult.AddRange(laptopVMs.Where(p => p.Manufacturer == "Lenovo"));
+                        break;
+                    case "HP":
+                        rezult.AddRange(laptopVMs.Where(p => p.Manufacturer == "HP"));
+                        break;
+                    case "ASUS":
+                        rezult.AddRange(laptopVMs.Where(p => p.Manufacturer == "ASUS"));
+                        break;
+                    case "15":
+                        rezult.AddRange(laptopVMs.Where(p => p.Screen == 15));
+                        break;
+                    case "16":
+                        rezult.AddRange(laptopVMs.Where(p => p.Screen == 16));
+                        break;
+                    case "4 ГБ":
+                        rezult.AddRange(laptopVMs.Where(p => p.RAM == "4 ГБ"));
+                        break;
+                    case "8 ГБ":
+                        rezult.AddRange(laptopVMs.Where(p => p.RAM == "8 ГБ"));
+                        break;
+                    case "16 ГБ":
+                        rezult.AddRange(laptopVMs.Where(p => p.RAM == "16 ГБ"));
+                        break;
+                    case "256 ГБ":
+                        rezult.AddRange(laptopVMs.Where(p => p.Memory == "256 ГБ"));
+                        break;
+                    case "500 ГБ":
+                        rezult.AddRange(laptopVMs.Where(p => p.Memory == "500 ГБ"));
+                        break;
 
+                }
+            }
 
+            return View("GetLaptops", rezult.Distinct().ToList());
+        }
 
+        public ActionResult GetLaptop(int laptopIdDto)
+        {
+            LaptopDTO laptopDTO = service.GetLaptop(laptopIdDto);
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<LaptopDTO, LaptopViewModel>()).CreateMapper();
+            LaptopViewModel laptopVM = mapper.Map<LaptopDTO, LaptopViewModel>(laptopDTO);
 
+            var mapper1 = new MapperConfiguration(cfg => cfg.CreateMap<ImageDTO, Image>()).CreateMapper();
+            IEnumerable<Image> images = mapper1.Map<IEnumerable<ImageDTO>, IEnumerable<Image>>(service.GetImages());
 
+            laptopVM.Images.AddRange(images.Where(i => i.ProductId == laptopVM.Id));
 
+            var mapper2 = new MapperConfiguration(cfg => cfg.CreateMap<OrderSellerDTO, OrderSeller>()).CreateMapper();
+            OrderSeller seller = mapper2.Map<OrderSellerDTO, OrderSeller>(service.GetOrderSeller(laptopVM.OrderSellerId));
+
+            laptopVM.OrderSeller = seller;
+
+            return View(laptopVM);
+        }
+
+        [HttpGet]
+        public ActionResult UpdateLaptopCust(LaptopViewModel laptopVM)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<LaptopViewModel, LaptopDTO>()).CreateMapper();
+            LaptopDTO laptopDto = mapper.Map<LaptopViewModel, LaptopDTO>(laptopVM);
+            service.UpdateLaptop(laptopDto);
+
+            return View("Index");
+        }
 
 
 

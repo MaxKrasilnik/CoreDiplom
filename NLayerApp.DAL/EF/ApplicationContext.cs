@@ -14,6 +14,7 @@ namespace NLayerApp.DAL.EF
         public DbSet<Image> Images { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<TV> TVs { get; set; }
+        public DbSet<Laptop> Laptops { get; set; }
         public DbSet<OrderSeller> OrderSellers { get; set; }
         public DbSet<OrderCustomer> OrderCustomers { get; set; }
         public DbSet<User> Users { get; set; }
@@ -41,11 +42,11 @@ namespace NLayerApp.DAL.EF
             OrderSeller orderSeller4 = new OrderSeller { Id = 4, Header = "Телевизор Samsung UE24H4070AUXUA", Description = "Samsung UE24H4070 ‒ компактный телевизор с диагональю 24 дюйма и разрешением 1366x768 точек. Среди оснащения можно обнаружить тюнеры цифрового и аналогового телевидения и наличие USB интерфейса для просмотра фильмов, изображений и прослушивания музыки. Для экономии места устройство может быть закреплено на стену с помощью кронштейна, за что отвечает поддержка стандарта VESA и наличие разъемов для крепления 75x75 мм. Подключать проигрыватели, игровые приставки, ресиверы и другие устройства предоставляется возможным благодаря наличию разъемов HDMI (2 порта), компонентному, композитному и компьютерному VGA. За звук в Samsung UE24H4070 отвечает акустическая система 2.0 общей мощностью в 20 Вт с поддержкой Dolby Digital Plus, а для тех, кто любит смотреть телевизор в наушниках иммется разъем для их подключения.", UserId = 1 };
             OrderSeller orderSeller5 = new OrderSeller { Id = 5, Header = "Телевизор Xiaomi Mi LED TV 4S 43' UHD 4K(L43M5 - 5ARU)", Description = "Xiaomi Mi TV 4S 43' – бюджетный «умный» 4К - телевизор под управлением операционной системы Google Android TV, адресованный искушенным современным пользователям Smart TV.Основной концептуальный упор делает на крайне демократичную стоимость, по сравнению с сопоставимыми решениями. 10 - килограммовая конструкция наделена простым и аккуратным дизайном, а в качестве штатной акустики задействованы 10 - ваттные стереодинамики с поддержкой технологии объемного звучания Dolby Audio.Дисплеем служит 43 - дюймовый LCD - экран с LED - подсветкой, разрешением 3840x2160 пикселей и заявленной поддержкой HDR.", UserId = 1 };
             OrderSeller orderSeller6 = new OrderSeller { Id = 6, Header = "Телевизор Panasonic TX-32FSR500", Description = "Panasonic TX-32FSR500 – бюджетный «умный» телевизор, ориентированный на базовое мультимедийное применение в содействии с современной пользовательской электроникой. К достоинствам телевизора стоит отнести функциональный встроенный тюнер с поддержкой цифровых стандартов эфирного вещания DVB-C, DVB-T2, DVB-S2, а также бортовую акустику в составе двух 10-ваттных динамиков с поддержкой технологии объемного звучания Cinema Suround. 32-дюймовый LCD-экран с LED-подсветкой обладает разрешением 1366x768 пикселей.", UserId = 2 };
+            OrderSeller orderSeller7 = new OrderSeller { Id = 7, Header = "Ноутбук Lenovo IdeaPad S145-15IGM (81MX002RRA) Granite Black", Description = "Lenovo S145 — это 15.6-дюймовый высокопроизводительный ноутбук, который отлично подойдет для работы и развлечений. Ноутбук оснащен производительным процессором, высокоскоростным модулем Wi-Fi и акустической системой высокого качества. Динамический звук. Приготовьтесь окунуться в мир мультимедийных развлечений.Благодаря качественной аудиосистеме S145 обеспечивает громкое звучание музыки и фильмов. Высокая скорость передачи данных. Ноутбук оборудован разъемом USB 3.1, что позволяет обмениваться данными с другими устройствами со скоростью, которая в 10 раз превышает скорость интерфейсов USB более ранних версий. Интернет на сверхвысоких скоростях. Ноутбук S145 оснащен встроенным модулем Wi - Fi 802.11 ac, который обеспечивает молниеносную скорость для веб - серфинга, воспроизведения потокового видео и загрузки файлов.Скорость передачи данных стандарта Wi - Fi 802.11 ac почти в три раза выше, чем 802.11 b / g / n. Внимание к деталям S145 обладает простым, но в то же время элегантным дизайном.Несмотря на свою компактность, ноутбук может похвастать богатой функциональностью и поддержкой современных интерфейсов, включая USB 3.1, HDMI и SD.", UserId = 1 };
+            OrderSeller orderSeller8 = new OrderSeller { Id = 8, Header = "Ноутбук HP Pavilion Gaming 15-ec0003ua (9RH21EA) Dark Grey Суперцена!!!", Description = "HP Pavilion Gaming 15 — среднеформатный игровой ноутбук, ориентированный на пользователей, которым нужно мощное и портативное решение. Модель выполнена в обновленном дизайне, соответствующем новой линейке и отличается строгостью и элегантностью. HP Pavilion Gaming 15 оснащается высокопроизводительным процессором Intel Core i7, работающим в паре с дискретным видеоадаптером NVIDIA GeForce GTX950M. В такой конфигурации ноутбук способен справляться с любыми задачами, которые поставит перед ним пользователь. В HP Pavilion Gaming 15 используется качественная IPS матрица, которая обеспечивает отличное качество картинки. Приятным бонусом станет наличие подсветки клавиатуры, что делает возможным игру и работу в темное время суток.", UserId = 1 };
+            OrderSeller orderSeller9 = new OrderSeller { Id = 9, Header = "Ноутбук Asus Gaming X571GT-BN436 (90NB0NL1-M07160) Star Black Суперцена!!!", Description = "ASUS Laptop X571 – это современный ноутбук для ежедневного использования как дома, так и в офисе. Его мощная аппаратная конфигурация, в которую входит процессор Intel, видеокарта NVIDIA GeForce 1650 и до 16 гигабайт оперативной памяти, обеспечит высокую скорость работы любых приложений. В качестве операционной системы на него может устанавливаться Windows 10 Pro. Ноутбук ASUS Laptop X571 обладает современной конфигурацией, которая прекрасно подходит для повседневных дел и развлечений, например для обработки видео или запуска легких игр. В максимальной версии она включает в себя процессор Intel Core i7 девятого поколения, оперативную память объемом 16 ГБ и дискретную видеокарту NVIDIA GeForce GTX 1650.", UserId = 2 };
 
-            modelBuilder.Entity<OrderSeller>().HasData(new OrderSeller[] { orderSeller1, orderSeller2, orderSeller3, orderSeller4, orderSeller5, orderSeller6 });
-
-
-            
+            modelBuilder.Entity<OrderSeller>().HasData(new OrderSeller[] { orderSeller1, orderSeller2, orderSeller3, orderSeller4, orderSeller5, orderSeller6, orderSeller7, orderSeller8, orderSeller9 });
 
 
             Phone phone1 = new Phone { Id = 1, Name = "Мобильный телефон Samsung Galaxy A31 4/128GB Prism Crush White (SM-A315FZWVSEK)", Manufacturer = "Samsung", Category = "Phone", PriceStart = 6700, PriceNow=6350, PriceEnd=6000, QtyStart=10, QtyEnd=5, Screen = 6, CPU = "MediaTek MT6768 2.0 ГГц + 1.7 ГГц", Camera = "12", RAM = 4, Memory = 128, QtySimCard = 2, Charge = 5000, OperationSystem = "Android", OrderSellerId = 1 };
@@ -63,6 +64,11 @@ namespace NLayerApp.DAL.EF
             modelBuilder.Entity<TV>().HasData(new TV[] { tv1, tv2, tv3 });
 
 
+            Laptop laptop1 = new Laptop() { Id = 7, Name = "Ноутбук Lenovo IdeaPad S145-15IGM (81MX002RRA) Granite Black", Manufacturer = "Lenovo", Category = "Laptop", PriceStart = 5000, PriceNow = 4800, PriceEnd = 4500, QtyStart = 10, QtyEnd = 6, OrderSellerId = 7, Screen = 16, CPU="Двухъядерный Intel Celeron N4000(1.1 - 2.6 ГГц)", RAM= "4 ГБ", Memory= "500 ГБ", Weight= "1.85 кг" };
+            Laptop laptop2 = new Laptop() { Id = 8, Name = "Ноутбук HP Pavilion Gaming 15-ec0003ua (9RH21EA) Dark Grey Суперцена!!!", Manufacturer = "HP", Category = "Laptop", PriceStart = 24000, PriceNow = 23800, PriceEnd = 23000, QtyStart = 5, QtyEnd = 4, OrderSellerId = 8, Screen = 16, CPU = "Четырехъядерный AMD Ryzen 5 3550H (2.1 - 3.7 ГГц)", RAM = "16 ГБ", Memory = "500 ГБ", Weight = "2.25 кг" };
+            Laptop laptop3 = new Laptop() { Id = 9, Name = "Ноутбук Asus Gaming X571GT-BN436 (90NB0NL1-M07160) Star Black Суперцена!!!", Manufacturer = "ASUS", Category = "Laptop", PriceStart = 21000, PriceNow = 20200, PriceEnd = 19000, QtyStart = 10, QtyEnd = 6, OrderSellerId = 9, Screen = 15, CPU = "Четырехъядерный Intel Core i5-8300H (2.3 - 4.0 ГГц)", RAM = "8 ГБ", Memory = "256 ГБ", Weight = "2.14 кг" };
+
+            modelBuilder.Entity<Laptop>().HasData(new Laptop[] { laptop1, laptop2, laptop3 });
 
 
             OrderCustomer orderCustomer1 = new OrderCustomer { Id = 1, Name = "Иван", Surname = "Иванов", Patronymic = "Иванович", Address = "ул.Иванова 9", ProdId = 1, UserId=1 };
@@ -117,7 +123,22 @@ namespace NLayerApp.DAL.EF
             Image image32 = new Image() { Id = 32, Name = "tv3_4.jpg", Path = "/images/tv3_4.jpg", ProductId = tv3.Id };
             Image image33 = new Image() { Id = 33, Name = "tv3_5.jpg", Path = "/images/tv3_5.jpg", ProductId = tv3.Id };
 
-            modelBuilder.Entity<Image>().HasData(new Image[] { image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15, image16, image17, image18, image19, image20, image21, image22, image23, image24, image25, image26, image27, image28, image29, image30, image31, image32, image33 });
+            Image image34 = new Image() { Id = 34, Name = "laptop1_1.jpg", Path = "/images/laptop1_1.jpg", ProductId = laptop1.Id };
+            Image image35 = new Image() { Id = 35, Name = "laptop1_2.jpg", Path = "/images/laptop1_2.jpg", ProductId = laptop1.Id };
+            Image image36 = new Image() { Id = 36, Name = "laptop1_3.jpg", Path = "/images/laptop1_3.jpg", ProductId = laptop1.Id };
+            Image image37 = new Image() { Id = 37, Name = "laptop1_4.jpg", Path = "/images/laptop1_4.jpg", ProductId = laptop1.Id };
+
+            Image image38 = new Image() { Id = 38, Name = "laptop2_1.jpg", Path = "/images/laptop2_1.jpg", ProductId = laptop2.Id };
+            Image image39 = new Image() { Id = 39, Name = "laptop2_2.jpg", Path = "/images/laptop2_2.jpg", ProductId = laptop2.Id };
+            Image image40 = new Image() { Id = 40, Name = "laptop2_3.jpg", Path = "/images/laptop2_3.jpg", ProductId = laptop2.Id };
+            Image image41 = new Image() { Id = 41, Name = "laptop2_4.jpg", Path = "/images/laptop2_4.jpg", ProductId = laptop2.Id };
+
+            Image image42 = new Image() { Id = 42, Name = "laptop3_1.jpg", Path = "/images/laptop3_1.jpg", ProductId = laptop3.Id };
+            Image image43 = new Image() { Id = 43, Name = "laptop3_2.jpg", Path = "/images/laptop3_2.jpg", ProductId = laptop3.Id };
+            Image image44 = new Image() { Id = 44, Name = "laptop3_3.jpg", Path = "/images/laptop3_3.jpg", ProductId = laptop3.Id };
+            Image image45 = new Image() { Id = 45, Name = "laptop3_4.jpg", Path = "/images/laptop3_4.jpg", ProductId = laptop3.Id };
+
+            modelBuilder.Entity<Image>().HasData(new Image[] { image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15, image16, image17, image18, image19, image20, image21, image22, image23, image24, image25, image26, image27, image28, image29, image30, image31, image32, image33, image34, image35, image36, image37, image38, image39, image40, image41, image42, image43, image44, image45 });
             
             
             
