@@ -293,6 +293,65 @@ namespace NLayerApp.BLL.Services
 
 
 
+        //--------------------TV---------------------
+        public void CreateTV(TVDTO tvDto)
+        {
+            if (tvDto == null)
+                throw new ValidationException("При добавлении нового телевизора произошла ошибка. Экземпляр объекта TVDTO равен null.", "");
+            if (tvDto.OrderSellerId == 0)
+                throw new ValidationException("Заказ продавца не найден", "");
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TVDTO, TV>()).CreateMapper();
+            TV tv = mapper.Map<TVDTO, TV>(tvDto);
+
+            OrderSeller seller = Database.OrderSellers.Get(tvDto.OrderSellerId);
+            tv.OrderSeller = seller;
+
+            Database.TVs.Create(tv);
+            Database.Save();
+        }
+
+        public void UpdateTV(TVDTO tvDto)
+        {
+            if (tvDto == null)
+                throw new ValidationException("При обновлении телевизора произошла ошибка. Экземпляр объекта TVDTO равен null.", "");
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TVDTO, TV>()).CreateMapper();
+            TV tv = mapper.Map<TVDTO, TV>(tvDto);
+
+            Database.TVs.Update(tv);
+            Database.Save();
+        }
+
+        public TVDTO GetTV(int? id)
+        {
+            if (id == null)
+                throw new ValidationException("Не установлено id телевизора", "");
+            var tv = Database.TVs.Get(id.Value);
+            if (tv == null)
+                throw new ValidationException("Телевизор не найден", "");
+
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TV, TVDTO>()).CreateMapper();
+            return mapper.Map<TV, TVDTO>(tv);
+        }
+
+        public List<TVDTO> GetTVs()
+        {
+            // применяем автомаппер для проекции одной коллекции на другую
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TV, TVDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<TV>, List<TVDTO>>(Database.TVs.GetAll());
+        }
+
+        public void DeleteTV(int id)
+        {
+            Database.TVs.Delete(id);
+            Database.Save();
+        }
+
+
+
+
+
+
 
         public void Dispose()
         {

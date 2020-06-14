@@ -42,6 +42,13 @@ namespace NLayerApp.BLL.Interfaces
 
         string GetProduct(int? id);
 
+
+        void CreateTV(TVDTO tvDto);
+        TVDTO GetTV(int? id);
+        List<TVDTO> GetTVs();
+        void UpdateTV(TVDTO tvDto);
+        void DeleteTV(int id);
+
         void Dispose();
     }
 }

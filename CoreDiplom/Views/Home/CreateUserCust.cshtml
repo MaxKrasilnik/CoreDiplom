@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "CreateUserCust";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CreateUserCust</h1>
+
+<div style="padding-top: 50px; padding-bottom: 30px;">
+    <h3 style="text-align: center; margin-bottom: 20px;">Страница регистрации</h3>
+    <div style="display: flex; width: 100%; height: 100%; justify-content: center; align-items: center; flex-direction:column;">
+        <form asp-controller="Home" asp-action="CreateUserCust" method="post"
+              style="width: 400px; text-align: center;">
+            <input type="hidden" class="form-control" name="Id" style="text-align: center;">
+            <div class="form-group">
+                <label for="Email">Введите свой еmail</label>
+                <input type="text" class="form-control" name="Email" style="text-align: center;">
+            </div>
+            <div class="form-group">
+                <label for="Password">Введите свой пароль</label>
+                <input type="password" class="form-control" name="Password" style="text-align: center;">
+            </div>
+
+            <input type="hidden" class="form-control" value="User" name="Role" style="text-align: center;">
+
+            <input class="form-control" type="hidden" name="prodId" value="@ViewData["prodId"]" />
+
+
+            <div>
+                <div class="col-md-offset-6 col-md-6" style="margin: auto;">
+                    <input style="margin: auto; font-size: 14pt; padding: 5px 15px; border: none;" type="submit" class="btns" value="Зарегистрироваться" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

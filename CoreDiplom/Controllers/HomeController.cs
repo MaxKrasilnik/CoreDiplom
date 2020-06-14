@@ -27,8 +27,8 @@ namespace NLayerApp.WEB
     {
         IService service;
         IWebHostEnvironment _appEnvironment;
-        bool authorization = false;
-        int authorizUserId = 0;
+        static bool authorization = false;
+        static int authorizUserId = 0;
         int orderSelId=0;
 
         public HomeController(IService serv, IWebHostEnvironment appEnvironment)
@@ -389,10 +389,9 @@ namespace NLayerApp.WEB
             ViewData["prodId"] = prodId;
             if (authorization == false && authorizUserId == 0)
             {
-                
                 return View("Authorization");
             }
-           
+            authorization = true;
             ViewData["UserId"] = authorizUserId;
 
             return View();
@@ -476,12 +475,7 @@ namespace NLayerApp.WEB
             return View("ThanksPagePhone");
         }
 
-        [HttpPost]
-        public ActionResult CreateUser(UserViewModel userVM)
-        {
-
-            return View();
-        }
+  
 
         [HttpGet]
         public ActionResult UpdateOrderCustomer(int customerIdDto)
@@ -548,6 +542,117 @@ namespace NLayerApp.WEB
 
             return View(userVMs);
         }
+
+        [HttpGet]
+        public ActionResult CreateUserCust(int prodId)
+        {
+            ViewData["prodId"] = prodId;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateUserCust(UserViewModel userVM, int prodId)
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UserViewModel, UserDTO>()).CreateMapper();
+            UserDTO userDto = mapper.Map<UserViewModel, UserDTO>(userVM);
+            service.CreateUser(userDto);
+
+            ViewData["prodId"] = prodId;
+
+            authorization = true;
+            authorizUserId = service.GetUsers().Last().Id;
+
+            ViewData["UserId"] = service.GetUsers().Last().Id;
+
+            return View("CreateOrderCustomer");
+        }
+
+
+
+
+
+
+        //--------------------TV---------------------
+
+
+        public ActionResult GetTVs()
+        {
+            List<TVDTO> tvDTOs = service.GetTVs();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TVDTO, TVViewModel>()).CreateMapper();
+            List<TVViewModel> tvVMs = mapper.Map<List<TVDTO>, List<TVViewModel>>(tvDTOs);
+
+            return View(tvVMs);
+        }
+
+
+        [HttpPost]
+        public ActionResult GetTVsSort(string[] filters)
+        {
+            List<TVDTO> tvDTOs = service.GetTVs();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<TVDTO, TVViewModel>()).CreateMapper();
+            List<TVViewModel> tvVMs = mapper.Map<List<TVDTO>, List<TVViewModel>>(tvDTOs);
+
+            List<TVViewModel> rezult = new List<TVViewModel>();
+
+
+            for (int i = 0; i < filters.Length; i++)
+            {
+                switch (filters[i])
+                {
+                    case "Samsung":
+                        rezult.AddRange(tvVMs.Where(p => p.Manufacturer == "Samsung"));
+                        break;
+                    case "Xiaomi":
+                        rezult.AddRange(tvVMs.Where(p => p.Manufacturer == "Xiaomi"));
+                        break;
+                    case "Panasonic":
+                        rezult.AddRange(tvVMs.Where(p => p.Manufacturer == "Panasonic"));
+                        break;
+                    case "24":
+                        rezult.AddRange(tvVMs.Where(p => p.Screen == 24));
+                        break;
+                    case "32":
+                        rezult.AddRange(tvVMs.Where(p => p.Screen == 32));
+                        break;
+                    case "43":
+                        rezult.AddRange(tvVMs.Where(p => p.Screen == 43));
+                        break;
+                    case "1366x768":
+                        rezult.AddRange(tvVMs.Where(p => p.Resolution == "1366x768"));
+                        break;
+                    case "3840x2160":
+                        rezult.AddRange(tvVMs.Where(p => p.Resolution == "3840x2160"));
+                        break;
+                    case "Нет":
+                        rezult.AddRange(tvVMs.Where(p => p.SmartPlatform == "Нет"));
+                        break;
+                    case "Android":
+                        rezult.AddRange(tvVMs.Where(p => p.SmartPlatform == "Android"));
+                        break;
+                    case "My Home Screen 3.0":
+                        rezult.AddRange(tvVMs.Where(p => p.SmartPlatform == "My Home Screen 3.0"));
+                        break;
+                }
+            }
+
+            return View("GetTVs", rezult.Distinct().ToList());
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

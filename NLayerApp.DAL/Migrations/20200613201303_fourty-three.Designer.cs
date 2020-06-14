@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NLayerApp.DAL.EF;
 
 namespace NLayerApp.DAL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20200613201303_fourty-three")]
+    partial class fourtythree
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -152,125 +154,6 @@ namespace NLayerApp.DAL.Migrations
                             Name = "phone3_4.jpg",
                             Path = "/images/phone3_4.jpg",
                             ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Name = "tv1_1.jpg",
-                            Path = "/images/tv1_1.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Name = "tv1_2.jpg",
-                            Path = "/images/tv1_2.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Name = "tv1_3.jpg",
-                            Path = "/images/tv1_3.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Name = "tv1_4.jpg",
-                            Path = "/images/tv1_4.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 21,
-                            Name = "tv1_5.jpg",
-                            Path = "/images/tv1_5.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 22,
-                            Name = "tv1_6.jpg",
-                            Path = "/images/tv1_6.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 23,
-                            Name = "tv2_1.jpg",
-                            Path = "/images/tv2_1.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Name = "tv2_2.jpg",
-                            Path = "/images/tv2_2.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 25,
-                            Name = "tv2_3.jpg",
-                            Path = "/images/tv2_3.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 26,
-                            Name = "tv2_4.jpg",
-                            Path = "/images/tv2_4.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 27,
-                            Name = "tv2_5.jpg",
-                            Path = "/images/tv2_5.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 28,
-                            Name = "tv2_6.jpg",
-                            Path = "/images/tv2_6.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 29,
-                            Name = "tv3_1.jpg",
-                            Path = "/images/tv3_1.jpg",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 30,
-                            Name = "tv3_2.jpg",
-                            Path = "/images/tv3_2.jpg",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 31,
-                            Name = "tv3_3.jpg",
-                            Path = "/images/tv3_3.jpg",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 32,
-                            Name = "tv3_4.jpg",
-                            Path = "/images/tv3_4.jpg",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 33,
-                            Name = "tv3_5.jpg",
-                            Path = "/images/tv3_5.jpg",
-                            ProductId = 6
                         });
                 });
 
@@ -410,27 +293,6 @@ namespace NLayerApp.DAL.Migrations
                             Id = 3,
                             Description = "Samsung Galaxy M21 – обновленная версия одного из самых сбалансированных решений компании в среднем сегменте. Устройство объединяет в себе элегантный лаконичный дизайн, безрамочное исполнение и хороший уровень оснащения. 6,4-дюймовый Super AMOLED дисплей Samsung Galaxy M21 имеет разрешение 2340х1080 точек. Фронтальная камера на 20- МП установлена в небольшом каплевидном вырезе. Она поддерживает технологию распознавания по лицу. Комфортный для любых задач уровень производительности обеспечивает 8-ядерный процессор Samsung Exynos 7. Основная камера смартфона состоит из трех модулей на 48, 8 и 5 МП. Она способна вести запись видео в разрешении 3840х2160 точек и с высокой частотой до 240 к/с. Важной особенностью Samsung Galaxy M21 является наличие NFC, а также поддержки быстрой зарядки.",
                             Header = "Смартфон Samsung Galaxy M21 4/64GB Green (SM-M215FZGU)",
-                            UserId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Samsung UE24H4070 ‒ компактный телевизор с диагональю 24 дюйма и разрешением 1366x768 точек. Среди оснащения можно обнаружить тюнеры цифрового и аналогового телевидения и наличие USB интерфейса для просмотра фильмов, изображений и прослушивания музыки. Для экономии места устройство может быть закреплено на стену с помощью кронштейна, за что отвечает поддержка стандарта VESA и наличие разъемов для крепления 75x75 мм. Подключать проигрыватели, игровые приставки, ресиверы и другие устройства предоставляется возможным благодаря наличию разъемов HDMI (2 порта), компонентному, композитному и компьютерному VGA. За звук в Samsung UE24H4070 отвечает акустическая система 2.0 общей мощностью в 20 Вт с поддержкой Dolby Digital Plus, а для тех, кто любит смотреть телевизор в наушниках иммется разъем для их подключения.",
-                            Header = "Телевизор Samsung UE24H4070AUXUA",
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "Xiaomi Mi TV 4S 43' – бюджетный «умный» 4К - телевизор под управлением операционной системы Google Android TV, адресованный искушенным современным пользователям Smart TV.Основной концептуальный упор делает на крайне демократичную стоимость, по сравнению с сопоставимыми решениями. 10 - килограммовая конструкция наделена простым и аккуратным дизайном, а в качестве штатной акустики задействованы 10 - ваттные стереодинамики с поддержкой технологии объемного звучания Dolby Audio.Дисплеем служит 43 - дюймовый LCD - экран с LED - подсветкой, разрешением 3840x2160 пикселей и заявленной поддержкой HDR.",
-                            Header = "Телевизор Xiaomi Mi LED TV 4S 43' UHD 4K(L43M5 - 5ARU)",
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Description = "Panasonic TX-32FSR500 – бюджетный «умный» телевизор, ориентированный на базовое мультимедийное применение в содействии с современной пользовательской электроникой. К достоинствам телевизора стоит отнести функциональный встроенный тюнер с поддержкой цифровых стандартов эфирного вещания DVB-C, DVB-T2, DVB-S2, а также бортовую акустику в составе двух 10-ваттных динамиков с поддержкой технологии объемного звучания Cinema Suround. 32-дюймовый LCD-экран с LED-подсветкой обладает разрешением 1366x768 пикселей.",
-                            Header = "Телевизор Panasonic TX-32FSR500",
                             UserId = 2
                         });
                 });
@@ -620,91 +482,6 @@ namespace NLayerApp.DAL.Migrations
                             QtySimCard = 2,
                             RAM = 4,
                             Screen = 6.5
-                        });
-                });
-
-            modelBuilder.Entity("NLayerApp.DAL.Entities.TV", b =>
-                {
-                    b.HasBaseType("NLayerApp.DAL.Entities.Product");
-
-                    b.Property<string>("DimensionsWithStand")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Resolution")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Screen")
-                        .HasColumnName("TV_Screen")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SmartPlatform")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TunerRanges")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WeightWithStand")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("TV");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 4,
-                            Category = "TV",
-                            Manufacturer = "Samsung",
-                            Name = "Телевизор Samsung UE24H4070AUXUA",
-                            OrderSellerId = 4,
-                            PriceEnd = 3000,
-                            PriceNow = 3150,
-                            PriceStart = 3300,
-                            QtyEnd = 5,
-                            QtyStart = 10,
-                            DimensionsWithStand = "561.8 x 384.2 x 163.8 мм",
-                            Resolution = "1366x768",
-                            Screen = 24,
-                            SmartPlatform = "Нет",
-                            TunerRanges = "DVB-C DVB-S2 DVB-T2",
-                            WeightWithStand = "4.1 кг"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Category = "TV",
-                            Manufacturer = "Xiaomi",
-                            Name = "Телевизор Xiaomi Mi LED TV 4S 43' UHD 4K(L43M5 - 5ARU)",
-                            OrderSellerId = 5,
-                            PriceEnd = 7500,
-                            PriceNow = 7850,
-                            PriceStart = 8000,
-                            QtyEnd = 7,
-                            QtyStart = 10,
-                            DimensionsWithStand = "963.3 x 214.6 x 613 мм",
-                            Resolution = "3840x2160",
-                            Screen = 43,
-                            SmartPlatform = "Android",
-                            TunerRanges = "DVB-C DVB-T2",
-                            WeightWithStand = "7.26 кг"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Category = "TV",
-                            Manufacturer = "Panasonic",
-                            Name = "Телевизор Panasonic TX-32FSR500",
-                            OrderSellerId = 6,
-                            PriceEnd = 5500,
-                            PriceNow = 5700,
-                            PriceStart = 6000,
-                            QtyEnd = 4,
-                            QtyStart = 10,
-                            DimensionsWithStand = "733 x 481 x 198 мм",
-                            Resolution = "1366x768",
-                            Screen = 32,
-                            SmartPlatform = "My Home Screen 3.0",
-                            TunerRanges = "DVB-C DVB-S2 DVB-T DVB-T2",
-                            WeightWithStand = "6 кг"
                         });
                 });
 

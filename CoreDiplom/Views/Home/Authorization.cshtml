@@ -29,7 +29,7 @@
 
     <div style="padding-top: 20px;">
         <div class="col-md-offset-6 col-md-6">
-            <a href='@Url.Action("CreateOrderCustomer", "Home")' class="btns" style="font-size: 14pt; padding: 7px 15px; border: none; text-align: center;">Зарегистрироваться</a>
+            <a href='@Url.Action("CreateUserCust", "Home", new { prodId = ViewData["prodId"] })' class="btns" style="font-size: 14pt; padding: 7px 15px; border: none; text-align: center;">Зарегистрироваться</a>
         </div>
     </div>
 

@@ -147,6 +147,7 @@
     <Compile Include="Entities\OrderSeller.cs" />
     <Compile Include="Entities\Phone.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\TV.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
@@ -238,6 +239,18 @@
     <Compile Include="Migrations\20200613125957_fourty-two.designer.cs">
       <DependentUpon>20200613125957_fourty-two.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200613201303_fourty-three.cs" />
+    <Compile Include="Migrations\20200613201303_fourty-three.designer.cs">
+      <DependentUpon>20200613201303_fourty-three.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200614085832_fourty-four.cs" />
+    <Compile Include="Migrations\20200614085832_fourty-four.designer.cs">
+      <DependentUpon>20200614085832_fourty-four.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200614103443_fourty-five.cs" />
+    <Compile Include="Migrations\20200614103443_fourty-five.designer.cs">
+      <DependentUpon>20200614103443_fourty-five.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ApplicationContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
@@ -246,6 +259,7 @@
     <Compile Include="Repositories\OrderSellerRepository.cs" />
     <Compile Include="Repositories\PhoneRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\TVRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

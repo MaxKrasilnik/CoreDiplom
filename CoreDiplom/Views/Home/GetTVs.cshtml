@@ -1,0 +1,116 @@
+﻿@model List<NLayerApp.WEB.Models.TVViewModel>
+@{
+    ViewData["Title"] = "GetTVs";
+    Layout = "_Layout_Products";
+}
+
+<h1>GetTVs</h1>
+
+
+@section Filters{
+
+
+    <form asp-controller="Home" asp-action="GetTVsSort" method="post" style="padding-top: 50px;">
+        <div class="checkbox-container">
+            <p style="font-weight: bold; margin-bottom: 10px;">Производитель</p>
+
+            <input type="checkbox" id="ch_1" name="filters" value="Samsung">
+            <label for="ch_1">Samsung</label>
+
+            <input type="checkbox" id="ch_2" name="filters" value="Xiaomi">
+            <label for="ch_2">Xiaomi</label>
+
+            <input type="checkbox" id="ch_3" name="filters" value="Panasonic">
+            <label for="ch_3">Panasonic</label>
+
+            @*///////////////////////////////////////////*@
+            <p style="font-weight: bold; margin-bottom: 10px; margin-top: 10px;">Диагональ экрана</p>
+
+            <input type="checkbox" id="ch_4" name="filters" value="24">
+            <label for="ch_4">24</label>
+
+            <input type="checkbox" id="ch_5" name="filters" value="32">
+            <label for="ch_5">32</label>
+
+            <input type="checkbox" id="ch_6" name="filters" value="43">
+            <label for="ch_6">43</label>
+
+            @*///////////////////////////////////////////*@
+            <p style="font-weight: bold; margin-bottom: 10px; margin-top: 10px;">Разрешение экрана</p>
+
+            <input type="checkbox" id="ch_7" name="filters" value="1366x768">
+            <label for="ch_7">1366x768</label>
+
+            <input type="checkbox" id="ch_8" name="filters" value="3840x2160">
+            <label for="ch_8">3840x2160</label>
+
+            @*///////////////////////////////////////////*@
+            <p style="font-weight: bold; margin-bottom: 10px; margin-top: 10px;">Smart-платформа</p>
+
+            <input type="checkbox" id="ch_9" name="filters" value="Нет">
+            <label for="ch_9">Нет</label>
+
+            <input type="checkbox" id="ch_10" name="filters" value="Android">
+            <label for="ch_10">Android</label>
+
+            <input type="checkbox" id="ch_11" name="filters" value="My Home Screen 3.0">
+            <label for="ch_11">My Home Screen 3.0</label>
+
+            <button type="submit" class="btn btn-outline-dark">Поиск</button>
+        </div>
+    </form>
+
+
+
+
+}
+
+
+
+
+<!--Карточки товаров-->
+
+<div class="container">
+    <div class="row justify-content-around">
+
+        @foreach (TVViewModel tv in Model)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="divImgCardCategories">
+                        <img src="@Url.Content(tv.Images.First().Path)" class="imgCardCategories" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="headerCard">@tv.Name</h5>
+                        <table>
+                            <tr class="card-sale">
+                                <td>Цена сначала</td>
+                                <td>Цена сейчас</td>
+                                <td>Мин. цена</td>
+                            </tr>
+                            <tr class="card-sale">
+                                <td class="old-sale">@tv.PriceStart</td>
+                                <td class="now-sale">@tv.PriceNow</td>
+                                <td>@tv.PriceEnd</td>
+                            </tr>
+                        </table>
+                        <div class="infoCardQtyTimer">
+                            <table>
+                                <tr class="card-sale">
+                                    <td>Осталось шт.</td>
+                                    <td>Таймер</td>
+                                </tr>
+                                <tr class="card-sale">
+                                    <td>@tv.QtyEnd</td>
+                                    <td class="timerGood"></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <a href='@Url.Action("GetPhone", "Home", new { phoneIdDto=tv.Id})' class="btns">Купить</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
